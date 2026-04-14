@@ -1,0 +1,50 @@
+---
+import type { GitHubRepoSignal } from '../lib/github';
+import { formatRelativeDate } from '../lib/github';
+import type { ProjectDefinition } from '../data/projects';
+
+type Props = {
+  project: ProjectDefinition;
+  signal?: GitHubRepoSignal;
+};
+
+const { project, signal } = Astro.props;
+---
+
+<article class="project-card">
+  <div class="project-card__topline">
+    <p>{project.year}</p>
+    <ul>
+      {project.categories.map((category) => <li>{category}</li>)}
+    </ul>
+  </div>
+
+  <div class="project-card__header">
+    <div>
+      <h3>{project.name}</h3>
+      <p>{project.summary}</p>
+    </div>
+    <a href={project.href} rel="noreferrer">View repo</a>
+  </div>
+
+  <dl class="project-card__details">
+    <div>
+      <dt>Context</dt>
+      <dd>{project.problem}</dd>
+    </div>
+    <div>
+      <dt>Build</dt>
+      <dd>{project.build}</dd>
+    </div>
+    <div>
+      <dt>Signal</dt>
+      <dd>{project.impact}</dd>
+    </div>
+  </dl>
+
+  <div class="project-card__meta">
+    <span>{signal?.language ?? project.language}</span>
+    <span>{signal ? `${signal.stars} stars` : 'Live GitHub data unavailable'}</span>
+    <span>{signal ? `Updated ${formatRelativeDate(signal.updatedAt)}` : 'Source of truth: GitHub'}</span>
+  </div>
+</article>

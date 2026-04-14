@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { site } from '../config/site';
+import { contributionHighlights, projectDefinitions } from '../data/projects';
+import { getGithubShowcase } from '../lib/github';
+import { buildBreadcrumbSchema, buildPersonSchema, buildSeo } from '../lib/seo';
+
+const github = await getGithubShowcase();
+const seo = buildSeo({
+  title: 'Projects | Valentin Dosimont',
+  description:
+    'Selected open source and public engineering work by Valentin Dosimont across gaming, AI, blockchain, and developer tooling.',
+  path: '/projects',
+});
+
+const groups = [
+  {
+    title: 'AI systems',
+    description: 'Execution, orchestration, and developer workflow automation.',
+    projects: projectDefinitions.filter((project) => ['marathon', 'claudeswarm'].includes(project.slug)),
+  },
+  {
+    title: 'Developer tooling',
+    description: 'Terminal UX, Neovim workflows, operator ergonomics, and fast feedback loops.',
+    projects: projectDefinitions.filter((project) => ['sqlv', 'autobahn-nvim', 'ccmanager'].includes(project.slug)),
+  },
+];
+---
+
+<Layout
+  seo={seo}
+  schema={[
+    buildPersonSchema(),
+    buildBreadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Projects', path: '/projects' },
+    ]),
+  ]}
+>
+  <section>
+    <span class="kicker">Open source projects</span>
+    <h1 class="page-title">A curated project shelf, not a dump of every repo.</h1>
+    <p class="lead">
+      These projects show how I think through systems, workflows, and interfaces. The thread running through them is consistent: clear operational models, keyboard-first ergonomics, and public engineering work that can be audited.
+    </p>
+  </section>
+
+  {groups.map((group) => (
+    <section>
+      <div class="section-heading">
+        <div>
+          <span class="kicker">{group.title}</span>
+          <h2>{group.title}</h2>
+        </div>
+        <p class="muted">{group.description}</p>
+      </div>
+
+      <div class="project-grid">
+        {group.projects.map((project) => <ProjectCard project={project} signal={github.repos[project.slug]} />)}
+      </div>
+    </section>
+  ))}
+
+  <section>
+    <div class="section-heading">
+      <div>
+        <span class="kicker">Contributions</span>
+        <h2>Relevant public contributions beyond owned repos.</h2>
+      </div>
+      <p class="muted">Useful context for teams auditing production-adjacent work in gaming and blockchain.</p>
+    </div>
+
+    <div class="signal-list">
+      {contributionHighlights.map((item) => (
+        <article class="signal-card panel">
+          <span class="signal-badge">External signal</span>
+          <h3>{item.name}</h3>
+          <p>{item.summary}</p>
+          <ul class="tag-list">
+            {item.categories.map((category) => <li>{category}</li>)}
+          </ul>
+          <a class="button" href={item.href} rel="noreferrer">Open link</a>
+        </article>
+      ))}
+      <article class="signal-card panel">
+        <span class="signal-badge">Profile</span>
+        <h3>{site.githubHandle}</h3>
+        <p>More repositories, forks, and recent activity are available directly on GitHub for deeper due diligence.</p>
+        <a class="button" href={site.github} rel="noreferrer">Open GitHub</a>
+      </article>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,37 @@
+---
+type Props = {
+  title: string;
+  description: string;
+  canonical: string;
+  type?: 'website' | 'article' | 'profile';
+  image?: string;
+  schema?: object | object[];
+};
+
+const { title, description, canonical, type = 'website', image, schema = [] } = Astro.props;
+const schemas = Array.isArray(schema) ? schema : [schema];
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="keywords" content="Valentin Dosimont, Rust engineer, AI systems engineer, gaming infrastructure engineer, blockchain engineer, open source engineer" />
+<link rel="canonical" href={canonical} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" href="/favicon.ico" />
+
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content="Valentin Dosimont" />
+{image && <meta property="og:image" content={image} />}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{image && <meta name="twitter:image" content={image} />}
+
+{schemas.map((item) => <script type="application/ld+json" set:html={JSON.stringify(item)} />)}

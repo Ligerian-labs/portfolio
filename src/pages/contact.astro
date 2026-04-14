@@ -1,0 +1,54 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import Layout from '../layouts/Layout.astro';
+import { site } from '../config/site';
+import { buildBreadcrumbSchema, buildPersonSchema, buildSeo } from '../lib/seo';
+
+const seo = buildSeo({
+  title: 'Contact | Valentin Dosimont',
+  description:
+    'Get in touch with Valentin Dosimont for engineering roles, consulting, or collaboration across gaming, AI, and blockchain.',
+  path: '/contact',
+});
+---
+
+<Layout
+  seo={seo}
+  schema={[
+    buildPersonSchema(),
+    buildBreadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Contact', path: '/contact' },
+    ]),
+  ]}
+>
+  <section>
+    <span class="kicker">Contact</span>
+    <h1 class="page-title">Bring a hard problem.</h1>
+    <p class="lead">
+      If you are hiring for gaming infrastructure, AI-native systems, blockchain tooling, or senior engineering leadership, send context. I prefer concrete briefs over generic outreach.
+    </p>
+  </section>
+
+  <section class="contact-grid">
+    <article class="contact-panel panel">
+      <h2>What to include</h2>
+      <p>The fastest way to start a useful conversation is to explain the system, the team shape, and where you need senior technical leverage.</p>
+      <ul class="tag-list">
+        <li>Role scope</li>
+        <li>Team stage</li>
+        <li>Technical constraints</li>
+        <li>Why now</li>
+      </ul>
+      <p>
+        Direct email also works: <a href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+    </article>
+
+    <article class="contact-panel panel">
+      <h2>Send a message</h2>
+      <p>Messages are delivered through Resend to keep the flow simple and maintainable on Dokploy.</p>
+      <ContactForm />
+    </article>
+  </section>
+</Layout>

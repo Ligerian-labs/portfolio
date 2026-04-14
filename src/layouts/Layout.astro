@@ -1,23 +1,43 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import SeoHead from '../components/SeoHead.astro';
+import { site } from '../config/site';
+import '../styles/global.css';
+
+type Props = {
+  seo: {
+    title: string;
+    description: string;
+    canonical: string;
+    type?: 'website' | 'article' | 'profile';
+    ogImage?: string;
+  };
+  schema?: object | object[];
+};
+
+const { seo, schema = [] } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <SeoHead
+      title={seo.title}
+      description={seo.description}
+      canonical={seo.canonical}
+      type={seo.type}
+      image={seo.ogImage ?? new URL(site.ogImage, site.url).toString()}
+      schema={schema}
+    />
+  </head>
+  <body>
+    <div class="page-shell">
+      <Header />
+      <main>
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

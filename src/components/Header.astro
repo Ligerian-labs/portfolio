@@ -1,0 +1,31 @@
+---
+import { navigation } from '../config/site';
+
+const pathname = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <a class="brand" href="/">
+    <span class="brand-mark">VD</span>
+    <span>
+      <strong>Valentin Dosimont</strong>
+      <small>Gaming, AI, blockchain</small>
+    </span>
+  </a>
+
+  <nav aria-label="Primary navigation">
+    <ul>
+      {navigation.map((item) => {
+        const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+
+        return (
+          <li>
+            <a href={item.href} aria-current={active ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </nav>
+</header>

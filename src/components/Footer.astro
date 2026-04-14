@@ -1,0 +1,14 @@
+---
+import { site } from '../config/site';
+---
+
+<footer class="site-footer">
+  <p>
+    <strong>{site.name}</strong>
+    <span>Rust, TypeScript, Go, infrastructure, open source.</span>
+  </p>
+  <div>
+    <a href={site.github} rel="noreferrer">GitHub</a>
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+  </div>
+</footer>
