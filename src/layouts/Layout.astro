@@ -1,6 +1,7 @@
 ---
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import MatrixTrail from '../components/MatrixTrail.astro';
 import SeoHead from '../components/SeoHead.astro';
 import { site } from '../config/site';
 import '../styles/global.css';
@@ -33,6 +34,7 @@ const pathname = Astro.url.pathname;
     />
   </head>
   <body>
+    <MatrixTrail />
     <div class="page-shell">
       <Header pathname={pathname} />
       <main>

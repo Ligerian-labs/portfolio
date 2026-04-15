@@ -1,0 +1,151 @@
+<canvas class="matrix-canvas" aria-hidden="true"></canvas>
+
+<style>
+  .matrix-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.75;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .matrix-canvas {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const canvas = document.querySelector('canvas.matrix-canvas');
+  const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (canvas instanceof HTMLCanvasElement && !prefersReduce) {
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      const CELL = 15;
+      const CHARS =
+        'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789ABCDEFZ+=/*<>';
+      const SPAWN_DIST_SQ = 32 * 32;
+      const MAX_DROPS = 80;
+
+      type Drop = {
+        x: number;
+        y: number;
+        head: number;
+        maxRow: number;
+        speed: number;
+        lastTime: number;
+        lastRow: number;
+      };
+
+      const drops: Drop[] = [];
+      let lastSpawnX = -9999;
+      let lastSpawnY = -9999;
+      let dpr = window.devicePixelRatio || 1;
+      let running = false;
+
+      function resize() {
+        if (!ctx) return;
+        dpr = window.devicePixelRatio || 1;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        canvas!.width = Math.floor(w * dpr);
+        canvas!.height = Math.floor(h * dpr);
+        canvas!.style.width = w + 'px';
+        canvas!.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function randomChar() {
+        return CHARS[Math.floor(Math.random() * CHARS.length)];
+      }
+
+      function loop(t: number) {
+        if (!ctx) return;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+
+        // Soft fade — higher alpha = shorter, more muted trails.
+        ctx.fillStyle = 'rgba(6, 13, 6, 0.12)';
+        ctx.fillRect(0, 0, w, h);
+
+        ctx.font = `${CELL}px 'Geist Mono', ui-monospace, monospace`;
+        ctx.textBaseline = 'top';
+
+        for (let i = drops.length - 1; i >= 0; i--) {
+          const d = drops[i];
+          const dt = Math.min(0.05, (t - d.lastTime) / 1000);
+          d.lastTime = t;
+          d.head += d.speed * dt;
+          const row = Math.floor(d.head / CELL);
+
+          if (row !== d.lastRow && row <= d.maxRow) {
+            const y = d.y + row * CELL;
+            if (y < h + CELL) {
+              // Brightest leading character.
+              ctx.fillStyle = 'rgba(198, 255, 180, 0.55)';
+              ctx.fillText(randomChar(), d.x, y);
+              // Second-from-head dimmer green for subtle depth.
+              if (d.lastRow >= 0) {
+                const yPrev = d.y + d.lastRow * CELL;
+                if (yPrev < h + CELL) {
+                  ctx.fillStyle = 'rgba(57, 255, 20, 0.35)';
+                  ctx.fillText(randomChar(), d.x, yPrev);
+                }
+              }
+            }
+            d.lastRow = row;
+          }
+
+          if (row > d.maxRow + 3 || d.y + row * CELL > h + CELL * 3) {
+            drops.splice(i, 1);
+          }
+        }
+
+        if (drops.length === 0) {
+          running = false;
+          return;
+        }
+        requestAnimationFrame(loop);
+      }
+
+      function ensureRunning() {
+        if (!running) {
+          running = true;
+          requestAnimationFrame(loop);
+        }
+      }
+
+      window.addEventListener(
+        'pointermove',
+        (e) => {
+          if (e.pointerType !== 'mouse') return;
+          const dx = e.clientX - lastSpawnX;
+          const dy = e.clientY - lastSpawnY;
+          if (dx * dx + dy * dy < SPAWN_DIST_SQ) return;
+          lastSpawnX = e.clientX;
+          lastSpawnY = e.clientY;
+
+          if (drops.length >= MAX_DROPS) drops.shift();
+
+          drops.push({
+            x: Math.floor(e.clientX / CELL) * CELL,
+            y: e.clientY,
+            head: 0,
+            maxRow: 8 + Math.floor(Math.random() * 14),
+            speed: 55 + Math.random() * 70,
+            lastTime: performance.now(),
+            lastRow: -1,
+          });
+          ensureRunning();
+        },
+        { passive: true },
+      );
+    }
+  }
+</script>
