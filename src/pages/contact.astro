@@ -22,33 +22,87 @@ const seo = buildSeo({
     ]),
   ]}
 >
-  <section>
-    <span class="kicker">Contact</span>
-    <h1 class="page-title">Bring a hard problem.</h1>
-    <p class="lead">
-      If you are hiring for gaming infrastructure, AI-native systems, blockchain tooling, or senior engineering leadership, send context. I prefer concrete briefs over generic outreach.
-    </p>
+  <section class="page-hero">
+    <span class="breadcrumb">
+      <span class="breadcrumb__home">~</span>
+      <span class="breadcrumb__sep">/</span>
+      <span class="breadcrumb__current">contact</span>
+    </span>
+    <div class="page-title-row">
+      <span class="page-title-bar" aria-hidden="true"></span>
+      <h1 class="page-title page-title--sm">Get in Touch</h1>
+    </div>
+    <p class="page-lead">{`If you are hiring for gaming infrastructure, AI-native systems, blockchain tooling,\nor senior engineering leadership — send context. I prefer concrete briefs over generic outreach.`}</p>
   </section>
 
   <section class="contact-grid">
-    <article class="contact-panel panel">
-      <h2>What to include</h2>
-      <p>The fastest way to start a useful conversation is to explain the system, the team shape, and where you need senior technical leverage.</p>
-      <ul class="tag-list">
-        <li>Role scope</li>
-        <li>Team stage</li>
-        <li>Technical constraints</li>
-        <li>Why now</li>
-      </ul>
-      <p>
-        Direct email also works: <a href={`mailto:${site.email}`}>{site.email}</a>
-      </p>
-    </article>
+    <div class="contact-left">
+      <div>
+        <h2 class="contact-intro__title">{`Bring a\nhard problem.`}</h2>
+        <p class="contact-intro__text">
+          I work best when the problem is real, the stakes are high, and the team ships fast.
+          Whether it's a founding engineer role, a systems architecture challenge, or an open-source
+          collaboration — I'm listening.
+        </p>
+      </div>
 
-    <article class="contact-panel panel">
-      <h2>Send a message</h2>
-      <p>Messages are delivered through Resend to keep the flow simple and maintainable on Dokploy.</p>
+      <div class="checklist-card">
+        <h3 class="checklist-card__title">What to include</h3>
+        <ul class="checklist">
+          <li class="checklist__item">
+            <svg class="checklist__icon checklist__icon--target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            Role scope &amp; expectations
+          </li>
+          <li class="checklist__item">
+            <svg class="checklist__icon checklist__icon--users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            Team size &amp; stage
+          </li>
+          <li class="checklist__item">
+            <svg class="checklist__icon checklist__icon--cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+              <rect x="9" y="9" width="6" height="6"></rect>
+              <line x1="9" y1="2" x2="9" y2="4"></line>
+              <line x1="15" y1="2" x2="15" y2="4"></line>
+              <line x1="9" y1="20" x2="9" y2="22"></line>
+              <line x1="15" y1="20" x2="15" y2="22"></line>
+              <line x1="20" y1="9" x2="22" y2="9"></line>
+              <line x1="20" y1="14" x2="22" y2="14"></line>
+              <line x1="2" y1="9" x2="4" y2="9"></line>
+              <line x1="2" y1="14" x2="4" y2="14"></line>
+            </svg>
+            Technical stack &amp; constraints
+          </li>
+          <li class="checklist__item">
+            <svg class="checklist__icon checklist__icon--clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            Timeline &amp; urgency
+          </li>
+        </ul>
+      </div>
+
+      <div class="email-row">
+        <svg class="email-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span>Or email directly: <a href={`mailto:${site.email}`}>{site.email}</a></span>
+      </div>
+    </div>
+
+    <div class="contact-form-card">
+      <h2 class="contact-form-card__title">Send a message</h2>
       <ContactForm />
-    </article>
+    </div>
   </section>
 </Layout>

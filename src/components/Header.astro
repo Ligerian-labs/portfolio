@@ -1,31 +1,38 @@
 ---
-import { navigation } from '../config/site';
+type Props = {
+  pathname?: string;
+};
 
-const pathname = Astro.url.pathname;
+const { pathname = '/' } = Astro.props;
+
+const links = [
+  { href: '/', label: 'Experience' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/contact', label: 'Contact' },
+] as const;
+
+function isActive(href: string) {
+  if (href === '/') return pathname === '/';
+  return pathname.startsWith(href);
+}
 ---
 
 <header class="site-header">
   <a class="brand" href="/">
-    <span class="brand-mark">VD</span>
-    <span>
-      <strong>Valentin Dosimont</strong>
-      <small>Gaming, AI, blockchain</small>
-    </span>
+    <span class="logo-mark">VD</span>
+    <strong>Valentin Dosimont</strong>
   </a>
 
-  <nav aria-label="Primary navigation">
-    <ul>
-      {navigation.map((item) => {
-        const active = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
-
-        return (
-          <li>
-            <a href={item.href} aria-current={active ? 'page' : undefined}>
-              {item.label}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
+  <nav class="site-nav" aria-label="Primary">
+    {links.map((link) => (
+      <a
+        class="nav-link"
+        href={link.href}
+        aria-current={isActive(link.href) ? 'page' : undefined}
+      >
+        {link.label}
+      </a>
+    ))}
+    <a class="pill--hire" href="/contact">Hire Me</a>
   </nav>
 </header>

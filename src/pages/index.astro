@@ -1,21 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import { site } from '../config/site';
 import { experiences, skills } from '../data/experience';
-import { contributionHighlights, projectDefinitions } from '../data/projects';
-import ProjectCard from '../components/ProjectCard.astro';
-import { getGithubShowcase, formatRelativeDate } from '../lib/github';
+import { projectDefinitions } from '../data/projects';
+import { getGithubShowcase } from '../lib/github';
 import { buildBreadcrumbSchema, buildPersonSchema, buildSeo, buildWebsiteSchema } from '../lib/seo';
 
 const github = await getGithubShowcase();
 const seo = buildSeo({
   title: site.title,
   description:
-    'Gaming, AI, and blockchain portfolio for Valentin Dosimont, showcasing public systems work, developer tooling, and production infrastructure experience.',
+    'Infrastructure engineer at the intersection of gaming, AI, and blockchain. Rust, TypeScript, Go, Cairo. Open-source systems and developer tooling by Valentin Dosimont.',
   path: '/',
   type: 'profile',
 });
-const featuredProjects = projectDefinitions.filter((project) => project.featured);
+
+const featured = projectDefinitions.filter((project) => project.featured);
+const barCycle = ['primary', 'light', 'bright', 'mid', 'pale'] as const;
 ---
 
 <Layout
@@ -23,161 +25,68 @@ const featuredProjects = projectDefinitions.filter((project) => project.featured
   schema={[buildWebsiteSchema(), buildPersonSchema(), buildBreadcrumbSchema([{ name: 'Home', path: '/' }])]}
 >
   <section class="hero">
-    <div class="hero-copy panel">
-      <span class="kicker">Gaming x AI x blockchain</span>
-      <h1>Systems that feel fast, ship cleanly, and stand up in public.</h1>
-      <p class="hero-summary">
-        I build infrastructure and developer tooling at the point where gaming, AI, and blockchain start behaving like real products.
-        My work spans Rust services, TypeScript platforms, open source libraries, terminal UX, and the operational details that keep ambitious systems reliable.
-      </p>
-
-      <div class="button-row">
-        <a class="button button--primary" href="/projects">Explore projects</a>
-        <a class="button" href="/contact">Start a conversation</a>
-        <a class="button" href={site.github} rel="noreferrer">GitHub profile</a>
-      </div>
-
-      <ul class="stat-list">
-        <li>
-          <strong>60</strong>
-          <span class="muted">public repositories spanning systems, plugins, infra, and product tooling</span>
-        </li>
-        <li>
-          <strong>3</strong>
-          <span class="muted">core sectors woven together instead of treated as separate identities</span>
-        </li>
-        <li>
-          <strong>10+</strong>
-          <span class="muted">years building with a bias for code quality, autonomy, and maintainable systems</span>
-        </li>
-      </ul>
+    <div class="hero__avatar">
+      <img src={site.avatar} alt="Portrait of Valentin Dosimont" loading="eager" />
     </div>
-
-    <aside class="hero-aside panel">
-      <div class="portrait">
-        <img src={site.avatar} alt="Portrait of Valentin Dosimont" loading="eager" />
-      </div>
-
-      <div class="surface panel">
-        <p class="eyebrow">Current focus</p>
-        <h2>Infrastructure with taste.</h2>
-        <p>
-          Cartridge.gg, consultancy leadership, and open source work all point in the same direction: shipping fast-moving systems without losing discipline.
-        </p>
-        <ul class="tag-list">
-          <li>Rust</li>
-          <li>TypeScript</li>
-          <li>Go</li>
-          <li>Kubernetes</li>
-          <li>jj-vcs</li>
-        </ul>
-      </div>
-    </aside>
-  </section>
-
-  <section>
-    <div class="section-heading">
-      <div>
-        <span class="kicker">Featured work</span>
-        <h2>Selected projects that anchor the story.</h2>
-      </div>
-      <p class="muted">Curated projects backed by live GitHub metadata.</p>
-    </div>
-
-    <div class="project-grid">
-      {featuredProjects.map((project) => <ProjectCard project={project} signal={github.repos[project.slug]} />)}
+    <h1 class="hero__headline">I build systems that ship.</h1>
+    <p class="hero__subtitle">{`Infrastructure engineer at the intersection of gaming, AI, and blockchain.\nRust · TypeScript · Go · Cairo`}</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="/projects">View Projects</a>
+      <a class="btn btn--outline" href="/contact">Get in Touch</a>
     </div>
   </section>
 
-  <section>
-    <div class="section-heading">
-      <div>
-        <span class="kicker">Proof</span>
-        <h2>Recent public signals.</h2>
-      </div>
-      <p class="muted">A mix of owned repositories and upstream contribution activity.</p>
+  <section class="stat-bar">
+    <div class="stat-bar__cell">
+      <span class="stat-bar__num">60+</span>
+      <span class="stat-bar__label">Repos</span>
     </div>
+    <span class="stat-bar__divider" aria-hidden="true"></span>
+    <div class="stat-bar__cell">
+      <span class="stat-bar__num">3</span>
+      <span class="stat-bar__label">Sectors</span>
+    </div>
+    <span class="stat-bar__divider" aria-hidden="true"></span>
+    <div class="stat-bar__cell">
+      <span class="stat-bar__num">10+</span>
+      <span class="stat-bar__label">Yrs Experience</span>
+    </div>
+  </section>
 
-    <div class="signal-list">
-      {github.pullRequests.map((pullRequest) => (
-        <article class="signal-card panel">
-          <span class="signal-badge">Pull request</span>
-          <h3>{pullRequest.title}</h3>
-          <p>{pullRequest.repository}</p>
-          <div class="signal-meta">
-            <span>{pullRequest.state}</span>
-            <span>Updated {formatRelativeDate(pullRequest.updatedAt)}</span>
+  <section class="section">
+    <span class="section-eyebrow">Featured Work</span>
+    <div class="card-grid">
+      {featured.map((project, i) => (
+        <ProjectCard
+          project={project}
+          signal={github.repos[project.slug]}
+          variant="featured"
+          bar={barCycle[i % barCycle.length]}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-eyebrow section-eyebrow--bright">Experience</span>
+    <ol class="exp-list">
+      {experiences.map((exp, i) => (
+        <li class="exp-row" data-bar={barCycle[i % barCycle.length]}>
+          <span class="exp-row__bar" aria-hidden="true"></span>
+          <div class="exp-row__content">
+            <span class="exp-row__company">{exp.role} · {exp.company}</span>
+            <span class="exp-row__role">{exp.location} · {exp.period}</span>
+            <p class="exp-row__summary">{exp.summary}</p>
           </div>
-          <a class="button" href={pullRequest.url} rel="noreferrer">Open PR</a>
-        </article>
+        </li>
       ))}
-      {contributionHighlights.map((item) => (
-        <article class="signal-card panel">
-          <span class="signal-badge">Contribution</span>
-          <h3>{item.name}</h3>
-          <p>{item.summary}</p>
-          <ul class="tag-list">
-            {item.categories.map((category) => <li>{category}</li>)}
-          </ul>
-          <a class="button" href={item.href} rel="noreferrer">Open link</a>
-        </article>
-      ))}
-    </div>
+    </ol>
   </section>
 
-  <section>
-    <div class="section-heading">
-      <div>
-        <span class="kicker">Experience</span>
-        <h2>Production work behind the public repos.</h2>
-      </div>
-      <p class="muted">Leadership, migrations, code quality, and systems delivery across product teams and consulting.</p>
-    </div>
-
-    <div class="timeline-grid">
-      {experiences.map((experience) => (
-        <article class="timeline-card panel">
-          <div class="timeline-card__meta">
-            <span>{experience.period}</span>
-            <span>{experience.location}</span>
-          </div>
-          <h3>{experience.company}</h3>
-          <p>
-            <strong>{experience.role}</strong>
-          </p>
-          <p>{experience.summary}</p>
-          <ul class="tag-list">
-            {experience.tags.map((tag) => <li>{tag}</li>)}
-          </ul>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section>
-    <div class="section-heading">
-      <div>
-        <span class="kicker">Footprint</span>
-        <h2>Tools, habits, and operating style.</h2>
-      </div>
-      <p class="muted">The stack is broad, but the throughline is always the same: practical systems, sharp feedback loops, and maintainable code.</p>
-    </div>
-
-    <div class="detail-grid">
-      <article class="detail-card panel">
-        <h3>Core stack</h3>
-        <ul class="tag-list">
-          {skills.map((skill) => <li>{skill}</li>)}
-        </ul>
-      </article>
-      <article class="detail-card panel">
-        <h3>What companies get</h3>
-        <p>Someone who can move from product shaping to infra details, from open source maintenance to production incident prevention.</p>
-      </article>
-      <article class="detail-card panel">
-        <h3>Where this fits</h3>
-        <p>Gaming platforms, AI-native products, blockchain infrastructure teams, or any company that needs technical depth without theatrics.</p>
-      </article>
-    </div>
+  <section class="section">
+    <span class="section-eyebrow section-eyebrow--mid">Stack</span>
+    <ul class="stack-row">
+      {skills.map((skill) => <li class="stack-pill">{skill}</li>)}
+    </ul>
   </section>
 </Layout>

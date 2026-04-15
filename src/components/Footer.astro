@@ -1,14 +1,33 @@
 ---
 import { site } from '../config/site';
+
+type Props = {
+  pathname?: string;
+};
+
+const { pathname = '/' } = Astro.props;
+const isHome = pathname === '/';
+const segment = pathname.replace(/^\//, '').replace(/\/$/, '') || 'home';
+const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
-  <p>
-    <strong>{site.name}</strong>
-    <span>Rust, TypeScript, Go, infrastructure, open source.</span>
-  </p>
-  <div>
-    <a href={site.github} rel="noreferrer">GitHub</a>
-    <a href={`mailto:${site.email}`}>{site.email}</a>
-  </div>
+  {isHome ? (
+    <span class="site-footer__left">
+      <span class="site-footer__brand">VD</span>
+      <span class="site-footer__sep">·</span>
+      <span>Valentin Dosimont © {year}</span>
+    </span>
+  ) : (
+    <span class="site-footer__left breadcrumb">
+      <span class="breadcrumb__home">~</span>
+      <span class="breadcrumb__sep">/</span>
+      <span class="breadcrumb__current">{segment}</span>
+    </span>
+  )}
+
+  <span class="site-footer__right">
+    <a class="site-footer__link" href={site.github} rel="noreferrer">GitHub</a>
+    <a class="site-footer__link" href={`mailto:${site.email}`}>{site.email}</a>
+  </span>
 </footer>

@@ -17,6 +17,7 @@ type Props = {
 };
 
 const { seo, schema = [] } = Astro.props;
+const pathname = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -33,11 +34,11 @@ const { seo, schema = [] } = Astro.props;
   </head>
   <body>
     <div class="page-shell">
-      <Header />
+      <Header pathname={pathname} />
       <main>
         <slot />
       </main>
-      <Footer />
+      <Footer pathname={pathname} />
     </div>
   </body>
 </html>
