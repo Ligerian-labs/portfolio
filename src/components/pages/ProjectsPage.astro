@@ -22,7 +22,9 @@ const seo = buildSeo({
 const projects = getProjects(locale);
 const contributionHighlights = getContributionHighlights(locale);
 const aiProjects = projects.filter((p) => ['marathon', 'claudeswarm'].includes(p.slug));
-const tooling = projects.filter((p) => ['sqlv', 'autobahn-nvim', 'ccmanager'].includes(p.slug));
+const tooling = projects.filter((p) =>
+  ['sqlv', 'autobahn-nvim', 'ccmanager', 'inshtaller', 'rust-verify-keplr-signature'].includes(p.slug),
+);
 ---
 
 <Layout
@@ -77,8 +79,8 @@ const tooling = projects.filter((p) => ['sqlv', 'autobahn-nvim', 'ccmanager'].in
     <span class="section-eyebrow">{s.projects.sectionTooling}</span>
     <div class="card-grid card-grid--3">
       {tooling.map((project, i) => {
-        const bars = ['primary', 'bright', 'mid'] as const;
-        const licenses = ['MIT', undefined, 'MIT'];
+        const bars = ['primary', 'bright', 'mid', 'light', 'pale'] as const;
+        const licenses = ['MIT', undefined, 'MIT', 'MIT', 'MIT'];
         return (
           <ProjectCard
             project={project}

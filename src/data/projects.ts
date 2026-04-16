@@ -165,6 +165,58 @@ const projectDefinitions_all: readonly ProjectSource[] = [
     categories: ['gaming', 'ai', 'tooling'],
     featured: false,
   },
+  {
+    slug: 'inshtaller',
+    name: 'inshtaller',
+    year: '2025',
+    language: 'Zig',
+    href: 'https://github.com/MartianGreed/inshtaller',
+    repository: 'MartianGreed/inshtaller',
+    summary: {
+      en: 'A tiny Zig CLI that keeps an encrypted set of personal env vars in sync across every machine via a private GitHub repo.',
+      fr: "Un petit CLI Zig qui synchronise un jeu chiffré de variables d'environnement personnelles entre toutes vos machines via un dépôt GitHub privé.",
+    },
+    problem: {
+      en: 'Personal secrets and shell env vars drift between laptops, servers, and containers — existing managers are either heavyweight, cloud-bound, or impractical for a minimal dev setup.',
+      fr: "Les secrets personnels et variables d'environnement divergent entre laptops, serveurs et containers — les gestionnaires existants sont lourds, liés au cloud, ou peu pratiques pour un setup dev minimal.",
+    },
+    build: {
+      en: 'Single Zig binary using XChaCha20-Poly1305, a private Git repo as backend, and a zero-daemon `insh sync` workflow.',
+      fr: "Binaire Zig unique utilisant XChaCha20-Poly1305, un dépôt Git privé comme backend, et un flux `insh sync` sans daemon.",
+    },
+    impact: {
+      en: 'Shows low-level systems craft — cryptography, process sandboxing, and a sharp focus on developer ergonomics.',
+      fr: "Démontre un artisanat systèmes bas niveau — cryptographie, sandboxing de processus et une attention forte à l'ergonomie développeur.",
+    },
+    categories: ['tooling'],
+    featured: false,
+  },
+  {
+    slug: 'rust-verify-keplr-signature',
+    name: 'rust-verify-keplr-signature',
+    year: '2023',
+    language: 'Rust',
+    href: 'https://github.com/MartianGreed/rust-verify-keplr-signature',
+    repository: 'MartianGreed/rust-verify-keplr-signature',
+    summary: {
+      en: 'A small Rust library to verify Keplr wallet signatures for Cosmos-based authentication flows.',
+      fr: "Une petite bibliothèque Rust pour vérifier les signatures du wallet Keplr dans des flux d'authentification Cosmos.",
+    },
+    problem: {
+      en: 'Authenticating users who sign with a Keplr wallet from a Rust backend lacks ergonomic primitives — devs were reimplementing the signature dance ad hoc.',
+      fr: "Authentifier des utilisateurs qui signent avec un wallet Keplr depuis un backend Rust manquait de primitives ergonomiques — les développeurs réimplémentaient la vérification ad hoc.",
+    },
+    build: {
+      en: 'Wrote a focused verification primitive that takes the serialized Keplr signature and expected payload, returning a boolean.',
+      fr: "Écriture d'une primitive de vérification ciblée qui prend la signature Keplr sérialisée et la charge attendue, et renvoie un booléen.",
+    },
+    impact: {
+      en: 'A reusable building block for Cosmos-adjacent auth; a real-world Rust crypto utility with independent users.',
+      fr: "Une brique réutilisable pour l'authentification Cosmos ; un utilitaire crypto Rust concret avec des utilisateurs indépendants.",
+    },
+    categories: ['blockchain', 'tooling'],
+    featured: false,
+  },
 ];
 
 export function getProjects(locale: Locale): readonly ProjectDefinition[] {
@@ -212,6 +264,24 @@ const contributionHighlights_all: readonly ContributionSource[] = [
       fr: "Travaux publics récents sur l'infrastructure d'indexation Starknet, incluant les standards ERC, des corrections de contrôleur et des refactors de base de données.",
     },
     categories: ['blockchain', 'gaming'],
+  },
+  {
+    name: 'dojoengine/dojo.js',
+    href: 'https://github.com/dojoengine/dojo.js',
+    summary: {
+      en: 'Contributions to the TypeScript SDK that connects game clients to Dojo worlds on Starknet.',
+      fr: "Contributions au SDK TypeScript qui relie les clients de jeux aux mondes Dojo sur Starknet.",
+    },
+    categories: ['gaming', 'blockchain'],
+  },
+  {
+    name: 'cartridge-gg/arcade',
+    href: 'https://github.com/cartridge-gg/arcade',
+    summary: {
+      en: 'Work on the Cartridge Arcade — a platform to build and distribute onchain games on Starknet, with achievements and player profiles.',
+      fr: "Travaux sur Cartridge Arcade — une plateforme pour construire et distribuer des jeux onchain sur Starknet, avec succès et profils joueurs.",
+    },
+    categories: ['gaming', 'blockchain'],
   },
   {
     name: 'Cartridge.gg',
