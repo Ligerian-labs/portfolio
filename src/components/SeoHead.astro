@@ -1,4 +1,8 @@
 ---
+import type { SeoAlternate } from '../lib/seo';
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/ui';
+
 type Props = {
   title: string;
   description: string;
@@ -6,10 +10,22 @@ type Props = {
   type?: 'website' | 'article' | 'profile';
   image?: string;
   schema?: object | object[];
+  locale: Locale;
+  alternates?: SeoAlternate[];
 };
 
-const { title, description, canonical, type = 'website', image, schema = [] } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  type = 'website',
+  image,
+  schema = [],
+  locale,
+  alternates = [],
+} = Astro.props;
 const schemas = Array.isArray(schema) ? schema : [schema];
+const ogLocale = t(locale).html.ogLocale;
 ---
 
 <meta charset="UTF-8" />
@@ -19,6 +35,9 @@ const schemas = Array.isArray(schema) ? schema : [schema];
 <meta name="description" content={description} />
 <meta name="keywords" content="Valentin Dosimont, Rust engineer, AI systems engineer, gaming infrastructure engineer, blockchain engineer, open source engineer" />
 <link rel="canonical" href={canonical} />
+{alternates.map((alt) => (
+  <link rel="alternate" hreflang={alt.locale} href={alt.href} />
+))}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" />
 
@@ -34,6 +53,7 @@ const schemas = Array.isArray(schema) ? schema : [schema];
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:site_name" content="Valentin Dosimont" />
+<meta property="og:locale" content={ogLocale} />
 {image && <meta property="og:image" content={image} />}
 
 <meta name="twitter:card" content="summary_large_image" />

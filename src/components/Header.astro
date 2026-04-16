@@ -1,24 +1,30 @@
 ---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { localizedPath, stripLocale, t, type Locale } from '../i18n/ui';
+
 type Props = {
   pathname?: string;
+  locale: Locale;
 };
 
-const { pathname = '/' } = Astro.props;
+const { pathname = '/', locale } = Astro.props;
+const strings = t(locale);
+const { rest } = stripLocale(pathname);
 
 const links = [
-  { href: '/', label: 'Experience' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/contact', label: 'Contact' },
+  { path: '/', label: strings.nav.experience },
+  { path: '/projects', label: strings.nav.projects },
+  { path: '/contact', label: strings.nav.contact },
 ] as const;
 
-function isActive(href: string) {
-  if (href === '/') return pathname === '/';
-  return pathname.startsWith(href);
+function isActive(path: string) {
+  if (path === '/') return rest === '/';
+  return rest.startsWith(path);
 }
 ---
 
 <header class="site-header">
-  <a class="brand" href="/">
+  <a class="brand" href={localizedPath(locale, '/')}>
     <span class="logo-mark">VD</span>
     <strong>Valentin Dosimont</strong>
   </a>
@@ -27,12 +33,13 @@ function isActive(href: string) {
     {links.map((link) => (
       <a
         class="nav-link"
-        href={link.href}
-        aria-current={isActive(link.href) ? 'page' : undefined}
+        href={localizedPath(locale, link.path)}
+        aria-current={isActive(link.path) ? 'page' : undefined}
       >
         {link.label}
       </a>
     ))}
-    <a class="pill--hire" href="/contact">Hire Me</a>
+    <a class="pill--hire" href={localizedPath(locale, '/contact')}>{strings.nav.hire}</a>
+    <LanguageSwitcher locale={locale} pathname={pathname} />
   </nav>
 </header>

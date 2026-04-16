@@ -1,0 +1,29 @@
+---
+import { locales, localizedPath, stripLocale, t, type Locale } from '../i18n/ui';
+
+type Props = {
+  locale: Locale;
+  pathname: string;
+};
+
+const { locale, pathname } = Astro.props;
+const { rest } = stripLocale(pathname);
+const strings = t(locale).switcher;
+---
+
+<nav class="lang-switcher" aria-label={strings.aria}>
+  {locales.map((loc) => {
+    const href = localizedPath(loc, rest);
+    const isActive = loc === locale;
+    return (
+      <a
+        class="lang-switcher__link"
+        href={href}
+        aria-current={isActive ? 'true' : undefined}
+        hreflang={loc}
+      >
+        {strings[loc]}
+      </a>
+    );
+  })}
+</nav>

@@ -1,16 +1,14 @@
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/ui';
+
 export const site = {
   name: 'Valentin Dosimont',
-  title: 'Valentin Dosimont | Gaming, AI, and Blockchain Engineer',
-  description:
-    'Portfolio of Valentin Dosimont, an engineer building gaming infrastructure, AI systems, blockchain tooling, and open source developer platforms.',
   url: 'https://valentin.ligerianlabs.fr',
   domain: 'valentin.ligerianlabs.fr',
-  locale: 'en_US',
   github: 'https://github.com/MartianGreed',
   githubHandle: 'MartianGreed',
   email: 'bonjour@ligerianlabs.fr',
-  avatar:
-    'https://avatars.githubusercontent.com/u/11038484?v=4',
+  avatar: 'https://avatars.githubusercontent.com/u/11038484?v=4',
   ogImage: '/og-image.svg',
   keywords: [
     'Valentin Dosimont',
@@ -25,8 +23,11 @@ export const site = {
   ],
 } as const;
 
-export const navigation = [
-  { href: '/', label: 'Experience' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/contact', label: 'Contact' },
-] as const;
+export function getSiteMeta(locale: Locale) {
+  const s = t(locale);
+  return {
+    title: s.site.title,
+    description: s.site.description,
+    locale: s.html.ogLocale,
+  };
+}

@@ -1,14 +1,18 @@
 ---
 import { site } from '../config/site';
+import { stripLocale, t, type Locale } from '../i18n/ui';
 
 type Props = {
   pathname?: string;
+  locale: Locale;
 };
 
-const { pathname = '/' } = Astro.props;
-const isHome = pathname === '/';
-const segment = pathname.replace(/^\//, '').replace(/\/$/, '') || 'home';
+const { pathname = '/', locale } = Astro.props;
+const { rest } = stripLocale(pathname);
+const isHome = rest === '/';
+const segment = rest.replace(/^\//, '').replace(/\/$/, '') || 'home';
 const year = new Date().getFullYear();
+const strings = t(locale).footer;
 ---
 
 <footer class="site-footer">
@@ -27,7 +31,7 @@ const year = new Date().getFullYear();
   )}
 
   <span class="site-footer__right">
-    <a class="site-footer__link" href={site.github} rel="noreferrer">GitHub</a>
+    <a class="site-footer__link" href={site.github} rel="noreferrer">{strings.github}</a>
     <a class="site-footer__link" href={`mailto:${site.email}`}>{site.email}</a>
   </span>
 </footer>

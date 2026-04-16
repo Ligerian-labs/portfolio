@@ -8,5 +8,13 @@ export default defineConfig({
   site: 'https://valentin.ligerianlabs.fr',
   output: 'server',
   adapter: node({ mode: 'standalone' }),
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'fr'],
+    routing: {
+      prefixDefaultLocale: false,
+      redirectToDefaultLocale: false,
+    },
+  },
   integrations: [sitemap()],
 });

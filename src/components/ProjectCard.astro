@@ -1,6 +1,7 @@
 ---
 import type { GitHubRepoSignal } from '../lib/github';
 import type { ProjectDefinition, ProjectCategory } from '../data/projects';
+import { t, type Locale } from '../i18n/ui';
 
 type Props = {
   project: ProjectDefinition;
@@ -8,15 +9,17 @@ type Props = {
   variant?: 'featured' | 'grid';
   bar?: 'primary' | 'bright' | 'light' | 'mid' | 'pale';
   license?: string;
+  locale: Locale;
 };
 
-const { project, signal, variant = 'featured', bar = 'primary', license } = Astro.props;
+const { project, signal, variant = 'featured', bar = 'primary', license, locale } = Astro.props;
 
-const filterCategories: ProjectCategory[] = project.categories;
+const filterCategories: readonly ProjectCategory[] = project.categories;
 const dataCats = filterCategories.join(' ');
 const language = signal?.language ?? project.language;
 const stars = signal?.stars ?? 0;
 const metaText = license ? `${language} · ${license}` : language;
+const viewRepo = t(locale).card.viewRepo;
 ---
 
 {variant === 'featured' ? (
@@ -35,7 +38,7 @@ const metaText = license ? `${language} · ${license}` : language;
           <li class="tag-pill" data-cat={cat}>{cat}</li>
         ))}
       </ul>
-      <a class="feature-card__link" href={project.href} rel="noreferrer">View repo →</a>
+      <a class="feature-card__link" href={project.href} rel="noreferrer">{viewRepo}</a>
     </div>
   </article>
 ) : (
@@ -61,7 +64,7 @@ const metaText = license ? `${language} · ${license}` : language;
           {metaText}
           {stars > 0 && <span> · ★ {stars}</span>}
         </span>
-        <a class="project-card__link" href={project.href} rel="noreferrer">View repo →</a>
+        <a class="project-card__link" href={project.href} rel="noreferrer">{viewRepo}</a>
       </footer>
     </div>
   </article>

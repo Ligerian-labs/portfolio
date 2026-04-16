@@ -1,5 +1,5 @@
 import { site } from '../config/site';
-import { projectDefinitions } from '../data/projects';
+import { projectRepositories } from '../data/projects';
 
 export type GitHubRepoSignal = {
   name: string;
@@ -28,7 +28,7 @@ const apiBase = 'https://api.github.com';
 
 export async function getGithubShowcase(): Promise<GitHubShowcase> {
   const repoSignals = await Promise.all(
-    projectDefinitions.map(async (project) => {
+    projectRepositories.map(async (project) => {
       const signal = await fetchRepoSignal(project.repository);
       return [project.slug, signal] as const;
     }),

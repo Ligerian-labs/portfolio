@@ -1,22 +1,39 @@
-<form class="contact-form" data-contact-form>
+---
+import { t, type Locale } from '../i18n/ui';
+
+type Props = {
+  locale: Locale;
+};
+
+const { locale } = Astro.props;
+const f = t(locale).form;
+---
+
+<form
+  class="contact-form"
+  data-contact-form
+  data-status-sending={f.statusSending}
+  data-status-ok={f.statusOk}
+  data-status-error-fallback={f.statusErrorFallback}
+>
   <div class="form-field">
-    <label class="form-label" for="cf-name">Name *</label>
-    <input class="form-input" id="cf-name" name="name" type="text" autocomplete="name" placeholder="Your name" required />
+    <label class="form-label" for="cf-name">{f.nameLabel}</label>
+    <input class="form-input" id="cf-name" name="name" type="text" autocomplete="name" placeholder={f.namePlaceholder} required />
   </div>
 
   <div class="form-field">
-    <label class="form-label" for="cf-email">Email *</label>
-    <input class="form-input" id="cf-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required />
+    <label class="form-label" for="cf-email">{f.emailLabel}</label>
+    <input class="form-input" id="cf-email" name="email" type="email" autocomplete="email" placeholder={f.emailPlaceholder} required />
   </div>
 
   <div class="form-row">
     <div class="form-field">
-      <label class="form-label" for="cf-company">Company</label>
-      <input class="form-input" id="cf-company" name="company" type="text" autocomplete="organization" placeholder="Company name" />
+      <label class="form-label" for="cf-company">{f.companyLabel}</label>
+      <input class="form-input" id="cf-company" name="company" type="text" autocomplete="organization" placeholder={f.companyPlaceholder} />
     </div>
     <div class="form-field">
-      <label class="form-label" for="cf-website-real">Website</label>
-      <input class="form-input" id="cf-website-real" name="website-display" type="text" autocomplete="url" placeholder="https://..." />
+      <label class="form-label" for="cf-website-real">{f.websiteLabel}</label>
+      <input class="form-input" id="cf-website-real" name="website-display" type="text" autocomplete="url" placeholder={f.websitePlaceholder} />
     </div>
   </div>
 
@@ -26,8 +43,8 @@
   </label>
 
   <div class="form-field">
-    <label class="form-label" for="cf-message">Message *</label>
-    <textarea class="form-textarea" id="cf-message" name="message" rows="6" placeholder="Tell me about the role, the problem, and the team..." required></textarea>
+    <label class="form-label" for="cf-message">{f.messageLabel}</label>
+    <textarea class="form-textarea" id="cf-message" name="message" rows="6" placeholder={f.messagePlaceholder} required></textarea>
   </div>
 
   <div class="form-actions">
@@ -36,9 +53,9 @@
         <path d="M22 2L11 13"></path>
         <path d="M22 2l-7 20-4-9-9-4 20-7z"></path>
       </svg>
-      Send Message
+      {f.submit}
     </button>
-    <p class="form-caption">Powered by Resend</p>
+    <p class="form-caption">{f.poweredBy}</p>
     <p class="form-status" data-contact-status role="status" aria-live="polite"></p>
   </div>
 </form>
@@ -48,9 +65,13 @@
   const status = document.querySelector('[data-contact-status]');
 
   if (form instanceof HTMLFormElement && status instanceof HTMLElement) {
+    const msgSending = form.dataset.statusSending ?? 'Sending...';
+    const msgOk = form.dataset.statusOk ?? 'Message sent.';
+    const msgErrorFallback = form.dataset.statusErrorFallback ?? 'Unable to send your message right now.';
+
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      status.textContent = 'Sending...';
+      status.textContent = msgSending;
       status.dataset.state = '';
 
       const formData = new FormData(form);
@@ -65,14 +86,14 @@
         const payload = await response.json();
 
         if (!response.ok) {
-          throw new Error(payload.error || 'Unable to send your message right now.');
+          throw new Error(payload.error || msgErrorFallback);
         }
 
         form.reset();
-        status.textContent = 'Message sent. I will get back to you soon.';
+        status.textContent = msgOk;
         status.dataset.state = 'ok';
       } catch (error) {
-        status.textContent = error instanceof Error ? error.message : 'Unable to send your message right now.';
+        status.textContent = error instanceof Error ? error.message : msgErrorFallback;
         status.dataset.state = 'error';
       }
     });

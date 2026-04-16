@@ -1,0 +1,105 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../ProjectCard.astro';
+import { site } from '../../config/site';
+import { getExperiences, skills } from '../../data/experience';
+import { getProjects } from '../../data/projects';
+import { getGithubShowcase } from '../../lib/github';
+import { buildBreadcrumbSchema, buildPersonSchema, buildSeo, buildWebsiteSchema } from '../../lib/seo';
+import { localizedPath, t, type Locale } from '../../i18n/ui';
+
+type Props = { locale: Locale };
+const { locale } = Astro.props;
+
+const s = t(locale);
+const github = await getGithubShowcase();
+const seo = buildSeo({
+  title: s.site.title,
+  description: s.home.seoDescription,
+  path: '/',
+  type: 'profile',
+  locale,
+});
+
+const experiences = getExperiences(locale);
+const projects = getProjects(locale);
+const featured = projects.filter((project) => project.featured);
+const barCycle = ['primary', 'light', 'bright', 'mid', 'pale'] as const;
+---
+
+<Layout
+  seo={seo}
+  schema={[
+    buildWebsiteSchema(locale),
+    buildPersonSchema(),
+    buildBreadcrumbSchema([{ name: s.home.breadcrumb.home, path: '/' }], locale),
+  ]}
+  locale={locale}
+>
+  <section class="hero">
+    <div class="hero__avatar">
+      <img src={site.avatar} alt={s.home.avatarAlt} loading="eager" />
+    </div>
+    <h1 class="hero__headline">{s.home.heroHeadline}</h1>
+    <p class="hero__subtitle">{s.home.heroSubtitle}</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary" href={localizedPath(locale, '/projects')}>{s.home.ctaProjects}</a>
+      <a class="btn btn--outline" href={localizedPath(locale, '/contact')}>{s.home.ctaContact}</a>
+    </div>
+  </section>
+
+  <section class="stat-bar">
+    <div class="stat-bar__cell">
+      <span class="stat-bar__num">60+</span>
+      <span class="stat-bar__label">{s.home.statRepos}</span>
+    </div>
+    <span class="stat-bar__divider" aria-hidden="true"></span>
+    <div class="stat-bar__cell">
+      <span class="stat-bar__num">3</span>
+      <span class="stat-bar__label">{s.home.statSectors}</span>
+    </div>
+    <span class="stat-bar__divider" aria-hidden="true"></span>
+    <div class="stat-bar__cell">
+      <span class="stat-bar__num">10+</span>
+      <span class="stat-bar__label">{s.home.statYears}</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-eyebrow">{s.home.sectionFeatured}</span>
+    <div class="card-grid">
+      {featured.map((project, i) => (
+        <ProjectCard
+          project={project}
+          signal={github.repos[project.slug]}
+          variant="featured"
+          bar={barCycle[i % barCycle.length]}
+          locale={locale}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <span class="section-eyebrow section-eyebrow--bright">{s.home.sectionExperience}</span>
+    <ol class="exp-list">
+      {experiences.map((exp, i) => (
+        <li class="exp-row" data-bar={barCycle[i % barCycle.length]}>
+          <span class="exp-row__bar" aria-hidden="true"></span>
+          <div class="exp-row__content">
+            <span class="exp-row__company">{exp.role} · {exp.company}</span>
+            <span class="exp-row__role">{exp.location} · {exp.period}</span>
+            <p class="exp-row__summary">{exp.summary}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="section">
+    <span class="section-eyebrow section-eyebrow--mid">{s.home.sectionStack}</span>
+    <ul class="stack-row">
+      {skills.map((skill) => <li class="stack-pill">{skill}</li>)}
+    </ul>
+  </section>
+</Layout>
