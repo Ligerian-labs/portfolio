@@ -14,7 +14,7 @@ export const ui = {
     switcher: { aria: 'Language', en: 'EN', fr: 'FR' },
     home: {
       avatarAlt: 'Portrait of Valentin Dosimont',
-      heroHeadline: 'I build systems that ship.',
+      heroHeadline: 'A real human, AI-assisted. Building real software.',
       heroSubtitle:
         'Infrastructure engineer at the intersection of gaming, AI, and blockchain.\nRust · Zig · TypeScript · Go · Cairo',
       ctaProjects: 'View Projects',
@@ -27,7 +27,7 @@ export const ui = {
       sectionStack: 'Stack',
       breadcrumb: { home: 'Home' },
       seoDescription:
-        'Infrastructure engineer at the intersection of gaming, AI, and blockchain. Rust, Zig, TypeScript, Go, Cairo. Open-source systems and developer tooling by Valentin Dosimont.',
+        'A real human engineer, AI-assisted — shipping real software across gaming, AI, and blockchain. Rust, Zig, TypeScript, Go, Cairo. Open-source work by Valentin Dosimont.',
     },
     projects: {
       breadcrumbHome: '~/',
@@ -92,7 +92,7 @@ export const ui = {
     site: {
       title: 'Valentin Dosimont | Gaming, AI, and Blockchain Engineer',
       description:
-        'Portfolio of Valentin Dosimont, an engineer building gaming infrastructure, AI systems, blockchain tooling, and open source developer platforms.',
+        'Portfolio of Valentin Dosimont — a real human engineer, AI-assisted, building gaming infrastructure, AI systems, blockchain tooling, and open-source developer platforms.',
     },
   },
   fr: {
@@ -106,7 +106,7 @@ export const ui = {
     switcher: { aria: 'Langue', en: 'EN', fr: 'FR' },
     home: {
       avatarAlt: 'Portrait de Valentin Dosimont',
-      heroHeadline: 'Des systèmes complexes en production.',
+      heroHeadline: "Un vrai humain, assisté par l'IA. Du vrai logiciel.",
       heroSubtitle:
         "Entre infrastructure, gaming, IA et blockchain.\nRust · Zig · TypeScript · Go · Cairo",
       ctaProjects: 'Voir les projets',
@@ -119,7 +119,7 @@ export const ui = {
       sectionStack: 'Stack',
       breadcrumb: { home: 'Accueil' },
       seoDescription:
-        "Ingénieur infrastructure à la croisée du gaming, de l'IA et de la blockchain. Rust, Zig, TypeScript, Go, Cairo. Systèmes open source et outillage développeur par Valentin Dosimont.",
+        "Un vrai ingénieur humain, assisté par l'IA — du vrai logiciel livré dans le gaming, l'IA et la blockchain. Rust, Zig, TypeScript, Go, Cairo. Travaux open source par Valentin Dosimont.",
     },
     projects: {
       breadcrumbHome: '~/',
@@ -184,7 +184,7 @@ export const ui = {
     site: {
       title: 'Valentin Dosimont | Ingénieur Gaming, IA et Blockchain',
       description:
-        "Portfolio de Valentin Dosimont, ingénieur construisant de l'infrastructure gaming, des systèmes IA, de l'outillage blockchain et des plateformes développeur open source.",
+        "Portfolio de Valentin Dosimont — un vrai ingénieur humain, assisté par l'IA, qui construit de l'infrastructure gaming, des systèmes IA, de l'outillage blockchain et des plateformes open source.",
     },
   },
 } as const;

@@ -19978,6 +19978,780 @@
           ]
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "Zjulc",
+      "x": 0,
+      "y": 14636,
+      "name": "OG / Landing",
+      "width": 1200,
+      "height": 630,
+      "fill": "$v4-bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "2Wgks",
+          "x": 650,
+          "y": 20,
+          "name": "glow",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#39FF1415",
+                "position": 0
+              },
+              {
+                "color": "#39FF1400",
+                "position": 1
+              }
+            ]
+          },
+          "width": 550,
+          "height": 550
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 4,
+          "id": "Am5RI",
+          "x": 24,
+          "y": 24,
+          "name": "border",
+          "width": 1152,
+          "height": 582,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$v4-border"
+          }
+        },
+        {
+          "type": "text",
+          "id": "CIcWV",
+          "x": 80,
+          "y": 80,
+          "name": "vd",
+          "fill": "$v4-accent-primary",
+          "content": "VD",
+          "fontFamily": "Geist",
+          "fontSize": 72,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "qBMtf",
+          "x": 80,
+          "y": 164,
+          "name": "hline",
+          "fill": "$v4-accent-primary",
+          "width": 80,
+          "height": 2
+        },
+        {
+          "type": "text",
+          "id": "D7zQx",
+          "x": 80,
+          "y": 200,
+          "name": "nm",
+          "fill": "$v4-fg",
+          "content": "Valentin Dosimont",
+          "fontFamily": "Geist",
+          "fontSize": 48,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "alT3U",
+          "x": 80,
+          "y": 272,
+          "name": "tag",
+          "fill": "$v4-accent-primary",
+          "content": "I build systems that ship.",
+          "fontFamily": "Geist",
+          "fontSize": 30,
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "id": "oMSBj",
+          "x": 80,
+          "y": 328,
+          "name": "sub",
+          "fill": "$v4-fg-muted",
+          "content": "Infrastructure  ·  Gaming  ·  AI  ·  Blockchain",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "id": "2hR70",
+          "x": 80,
+          "y": 568,
+          "name": "url",
+          "fill": "$v4-fg-dim",
+          "content": "valentin.ligerianlabs.fr",
+          "fontFamily": "Geist Mono",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "4ITqM",
+          "x": 1060,
+          "y": 100,
+          "name": "vline",
+          "fill": "$v4-border-glow",
+          "width": 2,
+          "height": 430
+        },
+        {
+          "type": "ellipse",
+          "id": "sEdY8",
+          "x": 1054,
+          "y": 90,
+          "name": "dt",
+          "fill": "$v4-accent-primary",
+          "width": 14,
+          "height": 14
+        },
+        {
+          "type": "ellipse",
+          "id": "wMnKM",
+          "x": 1054,
+          "y": 530,
+          "name": "db",
+          "fill": "$v4-accent-primary",
+          "width": 14,
+          "height": 14
+        },
+        {
+          "type": "ellipse",
+          "id": "sgPE3",
+          "x": 1100,
+          "y": 160,
+          "name": "d1",
+          "fill": "$v4-accent-dim",
+          "width": 4,
+          "height": 4
+        },
+        {
+          "type": "ellipse",
+          "id": "deGMC",
+          "x": 1116,
+          "y": 160,
+          "name": "d2",
+          "fill": "$v4-accent-dim",
+          "width": 4,
+          "height": 4
+        },
+        {
+          "type": "ellipse",
+          "id": "VaA8D",
+          "x": 1100,
+          "y": 176,
+          "name": "d3",
+          "fill": "$v4-accent-dim",
+          "width": 4,
+          "height": 4
+        },
+        {
+          "type": "ellipse",
+          "id": "wswHG",
+          "x": 1116,
+          "y": 176,
+          "name": "d4",
+          "fill": "$v4-accent-dim",
+          "width": 4,
+          "height": 4
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "eV42u",
+      "x": 1400,
+      "y": 14636,
+      "name": "OG / Projects",
+      "width": 1200,
+      "height": 630,
+      "fill": "$v4-bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "x97CS",
+          "x": 680,
+          "y": 120,
+          "name": "bg60",
+          "opacity": 0.08,
+          "fill": "$v4-accent-primary",
+          "content": "60+",
+          "fontFamily": "Geist",
+          "fontSize": 200,
+          "fontWeight": "900"
+        },
+        {
+          "type": "ellipse",
+          "id": "N2SgG",
+          "x": 500,
+          "y": 100,
+          "name": "glow2",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#39FF1412",
+                "position": 0
+              },
+              {
+                "color": "#39FF1400",
+                "position": 1
+              }
+            ]
+          },
+          "width": 600,
+          "height": 450
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 4,
+          "id": "6uP5o",
+          "x": 24,
+          "y": 24,
+          "name": "border2",
+          "width": 1152,
+          "height": 582,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$v4-border"
+          }
+        },
+        {
+          "type": "text",
+          "id": "2BTKZ",
+          "x": 80,
+          "y": 70,
+          "name": "vd2",
+          "fill": "$v4-accent-primary",
+          "content": "VD",
+          "fontFamily": "Geist",
+          "fontSize": 36,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "id": "fYvd3",
+          "x": 80,
+          "y": 118,
+          "name": "hl2",
+          "fill": "$v4-accent-primary",
+          "width": 50,
+          "height": 2
+        },
+        {
+          "type": "text",
+          "id": "wRLNG",
+          "x": 80,
+          "y": 170,
+          "name": "ttl",
+          "fill": "$v4-fg",
+          "content": "Open Source",
+          "fontFamily": "Geist",
+          "fontSize": 56,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "tw1A9",
+          "x": 80,
+          "y": 252,
+          "name": "sub2",
+          "fill": "$v4-fg-muted",
+          "content": "AI Systems  ·  Dev Tooling  ·  Blockchain Infrastructure",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "normal",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "text",
+          "id": "Txxm6",
+          "x": 80,
+          "y": 310,
+          "name": "stn",
+          "fill": "$v4-accent-primary",
+          "content": "60+",
+          "fontFamily": "Geist",
+          "fontSize": 64,
+          "fontWeight": "900"
+        },
+        {
+          "type": "text",
+          "id": "7K10k",
+          "x": 80,
+          "y": 388,
+          "name": "stl",
+          "fill": "$v4-fg-muted",
+          "content": "Repositories",
+          "fontFamily": "Geist Mono",
+          "fontSize": 16,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "TiXiY",
+          "x": 80,
+          "y": 568,
+          "name": "url2",
+          "fill": "$v4-fg-dim",
+          "content": "valentin.ligerianlabs.fr/projects",
+          "fontFamily": "Geist Mono",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "wOhSj",
+          "x": 80,
+          "y": 520,
+          "name": "bhl1",
+          "fill": "$v4-border-glow",
+          "width": 200,
+          "height": 1
+        },
+        {
+          "type": "rectangle",
+          "id": "5QUKl",
+          "x": 80,
+          "y": 530,
+          "name": "bhl2",
+          "fill": "$v4-border-glow",
+          "width": 120,
+          "height": 1
+        },
+        {
+          "type": "ellipse",
+          "id": "Z6RUm",
+          "x": 1112,
+          "y": 50,
+          "name": "cd1",
+          "fill": "$v4-accent-primary",
+          "width": 10,
+          "height": 10
+        },
+        {
+          "type": "ellipse",
+          "id": "dlXbN",
+          "x": 1112,
+          "y": 564,
+          "name": "cd2",
+          "fill": "$v4-accent-primary",
+          "width": 10,
+          "height": 10
+        },
+        {
+          "type": "ellipse",
+          "id": "gKjhX",
+          "x": 50,
+          "y": 564,
+          "name": "cd3",
+          "fill": "$v4-accent-dim",
+          "width": 10,
+          "height": 10
+        },
+        {
+          "type": "rectangle",
+          "id": "FR4rC",
+          "x": 900,
+          "y": 315,
+          "name": "rhl",
+          "fill": "$v4-border-glow",
+          "width": 220,
+          "height": 2
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "8dgdv",
+      "x": 2800,
+      "y": 14636,
+      "name": "OG / Contact",
+      "width": 1200,
+      "height": 630,
+      "fill": "$v4-bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "hg32F",
+          "x": 0,
+          "y": 0,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1.2,
+              "height": 1.2
+            },
+            "colors": [
+              {
+                "color": "#0D1F0D",
+                "position": 0
+              },
+              {
+                "color": "#060D06",
+                "position": 1
+              }
+            ],
+            "center": {
+              "x": 0.3,
+              "y": 0.4
+            }
+          },
+          "width": 1200,
+          "height": 630
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 2,
+          "id": "rD6pW",
+          "x": 80,
+          "y": 200,
+          "fill": "#39FF14",
+          "width": 4,
+          "height": 80
+        },
+        {
+          "type": "text",
+          "id": "10Gjf",
+          "x": 104,
+          "y": 195,
+          "fill": "#E6F2E6",
+          "content": "Get in Touch",
+          "fontFamily": "Geist",
+          "fontSize": 64,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "HSJM7",
+          "x": 104,
+          "y": 280,
+          "fill": "#7A9A7A",
+          "content": "Hiring · Collaboration · Open Source",
+          "fontFamily": "Inter",
+          "fontSize": 22,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "TpUYH",
+          "x": 104,
+          "y": 330,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#39FF14",
+                "position": 0
+              },
+              {
+                "color": "#39FF1400",
+                "position": 1
+              }
+            ]
+          },
+          "width": 200,
+          "height": 1
+        },
+        {
+          "type": "text",
+          "id": "E3rAg",
+          "x": 104,
+          "y": 355,
+          "fill": "#4A6A4A",
+          "content": "I prefer concrete briefs over generic outreach.\nSend context — role, stack, timeline.",
+          "lineHeight": 1.6,
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "Y1iGn",
+          "x": 80,
+          "y": 80,
+          "width": 48,
+          "height": 48,
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#39FF1440"
+          },
+          "layout": "none"
+        },
+        {
+          "type": "text",
+          "id": "VBlI5",
+          "x": 92,
+          "y": 93,
+          "fill": "#39FF14",
+          "content": "VD",
+          "fontFamily": "Geist",
+          "fontSize": 20,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "3oAp3",
+          "x": 142,
+          "y": 93,
+          "fill": "#E6F2E6",
+          "content": "Valentin Dosimont",
+          "fontFamily": "Geist",
+          "fontSize": 18,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "XWxFf",
+          "x": 80,
+          "y": 570,
+          "fill": "#4A6A4A",
+          "content": "valentin.ligerianlabs.fr/contact",
+          "fontFamily": "Geist Mono",
+          "fontSize": 13,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "ellipse",
+          "id": "t01jb",
+          "x": 1080,
+          "y": 100,
+          "fill": "#39FF14",
+          "width": 6,
+          "height": 6
+        },
+        {
+          "type": "ellipse",
+          "id": "SVbJn",
+          "x": 1100,
+          "y": 200,
+          "fill": "#26A818",
+          "width": 4,
+          "height": 4
+        },
+        {
+          "type": "ellipse",
+          "id": "WGVEe",
+          "x": 1050,
+          "y": 350,
+          "fill": "#39FF1440",
+          "width": 8,
+          "height": 8
+        },
+        {
+          "type": "rectangle",
+          "id": "wMGZ3",
+          "x": 1100,
+          "y": 140,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#39FF1440",
+                "position": 0
+              },
+              {
+                "color": "#39FF1400",
+                "position": 1
+              }
+            ]
+          },
+          "width": 1,
+          "height": 120
+        },
+        {
+          "type": "icon_font",
+          "id": "Mx4jB",
+          "x": 80,
+          "y": 440,
+          "width": 24,
+          "height": 24,
+          "iconFontName": "mail",
+          "iconFontFamily": "lucide",
+          "fill": "#39FF14"
+        },
+        {
+          "type": "text",
+          "id": "Hf8HY",
+          "x": 116,
+          "y": 443,
+          "fill": "#7A9A7A",
+          "content": "bonjour@ligerianlabs.fr",
+          "fontFamily": "Geist Mono",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "RIwGv",
+      "x": 4200,
+      "y": 14636,
+      "name": "Favicon",
+      "width": 512,
+      "height": 512,
+      "fill": "$v4-bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "cornerRadius": 96,
+          "id": "5I9ZV",
+          "x": 0,
+          "y": 0,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 160,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#0B130B",
+                "position": 0
+              },
+              {
+                "color": "#060D06",
+                "position": 1
+              }
+            ]
+          },
+          "width": 512,
+          "height": 512
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 96,
+          "id": "YriWa",
+          "x": 0,
+          "y": 0,
+          "width": 512,
+          "height": 512,
+          "stroke": {
+            "align": "inside",
+            "thickness": 3,
+            "fill": "#1A2E1A"
+          }
+        },
+        {
+          "type": "text",
+          "id": "6qGhc",
+          "x": 118,
+          "y": 128,
+          "fill": "#39FF14",
+          "content": "VD",
+          "textAlign": "center",
+          "fontFamily": "Geist",
+          "fontSize": 200,
+          "fontWeight": "800"
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 3,
+          "id": "N2SW4",
+          "x": 90,
+          "y": 190,
+          "fill": "#39FF14",
+          "width": 6,
+          "height": 160
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 2,
+          "id": "QOuxb",
+          "x": 94,
+          "y": 380,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#39FF14",
+                "position": 0
+              },
+              {
+                "color": "#39FF1400",
+                "position": 1
+              }
+            ]
+          },
+          "width": 340,
+          "height": 4
+        },
+        {
+          "type": "ellipse",
+          "id": "m6oKd",
+          "x": 420,
+          "y": 100,
+          "fill": "#39FF1440",
+          "width": 12,
+          "height": 12
+        },
+        {
+          "type": "ellipse",
+          "id": "njF9g",
+          "x": 380,
+          "y": 400,
+          "fill": "#39FF1420",
+          "width": 8,
+          "height": 8
+        }
+      ]
     }
   ],
   "themes": {
