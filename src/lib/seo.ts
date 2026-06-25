@@ -48,9 +48,30 @@ export function buildPersonSchema() {
     url: site.url,
     image: site.avatar,
     email: site.email,
-    sameAs: [site.github],
-    jobTitle: 'Engineer',
-    knowsAbout: ['Gaming infrastructure', 'AI systems', 'Blockchain', 'Rust', 'TypeScript', 'Open source'],
+    sameAs: [site.github, site.linkedin],
+    jobTitle: 'Chief Technology Officer',
+    worksFor: [
+      {
+        '@type': 'Organization',
+        name: 'Pupuce CORP',
+      },
+      {
+        '@type': 'Organization',
+        name: 'Ligerian Labs',
+      },
+    ],
+    knowsAbout: [
+      'AI automation',
+      'Agentic coding',
+      'Technology management',
+      'TDD',
+      'Rust',
+      'TypeScript',
+      'Go',
+      'Open source',
+      'Gaming infrastructure',
+      'Blockchain',
+    ],
   };
 }
 

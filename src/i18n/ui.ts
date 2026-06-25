@@ -14,9 +14,9 @@ export const ui = {
     switcher: { aria: 'Language', en: 'EN', fr: 'FR' },
     home: {
       avatarAlt: 'Portrait of Valentin Dosimont',
-      heroHeadline: 'A real human, AI-assisted. Building real software.',
+      heroHeadline: 'CTO, founder, and agentic software builder.',
       heroSubtitle:
-        'Infrastructure engineer at the intersection of gaming, AI, and blockchain.\nRust · Zig · TypeScript · Go · Cairo',
+        'Chief Technology Officer at Pupuce CORP. Founder at Ligerian Labs.\nTypeScript · Rust · Go · TDD · AI agents',
       ctaProjects: 'View Projects',
       ctaContact: 'Get in Touch',
       statRepos: 'Repos',
@@ -27,7 +27,7 @@ export const ui = {
       sectionStack: 'Stack',
       breadcrumb: { home: 'Home' },
       seoDescription:
-        'A real human engineer, AI-assisted — shipping real software across gaming, AI, and blockchain. Rust, Zig, TypeScript, Go, Cairo. Open-source work by Valentin Dosimont.',
+        'Valentin Dosimont is a CTO, Ligerian Labs founder, and agentic software builder working across TypeScript, Rust, Go, TDD, AI automation, and technology management.',
     },
     projects: {
       breadcrumbHome: '~/',
@@ -54,10 +54,10 @@ export const ui = {
       breadcrumbCurrent: 'contact',
       title: 'Get in Touch',
       lead:
-        'If you are hiring for gaming infrastructure, AI-native systems, blockchain tooling,\nor senior engineering leadership — send context. I prefer concrete briefs over generic outreach.',
+        'If you need senior engineering leadership, agentic coding workflows, AI automation,\nor pragmatic TypeScript/Rust/Go delivery — send context. I prefer concrete briefs over generic outreach.',
       introTitle: 'Bring a\nhard problem.',
       introText:
-        "I work best when the problem is real, the stakes are high, and the team ships fast. Whether it's a founding engineer role, a systems architecture challenge, or an open-source collaboration — I'm listening.",
+        "I work best when the problem is real, the stakes are high, and the team ships fast. Whether it's technical leadership, AI agent systems, production architecture, or an open-source collaboration — I'm listening.",
       checklistTitle: 'What to include',
       checklistRole: 'Role scope & expectations',
       checklistTeam: 'Team size & stage',
@@ -67,7 +67,7 @@ export const ui = {
       formTitle: 'Send a message',
       seoTitle: 'Contact | Valentin Dosimont',
       seoDescription:
-        'Get in touch with Valentin Dosimont for engineering roles, consulting, or collaboration across gaming, AI, and blockchain.',
+        'Get in touch with Valentin Dosimont for technical leadership, AI automation, agentic coding workflows, consulting, or collaboration.',
       breadcrumbName: 'Contact',
     },
     form: {
@@ -90,9 +90,9 @@ export const ui = {
     footer: { github: 'GitHub' },
     card: { viewRepo: 'View repo →' },
     site: {
-      title: 'Valentin Dosimont | Gaming, AI, and Blockchain Engineer',
+      title: 'Valentin Dosimont | CTO, Founder, Agentic Software Builder',
       description:
-        'Portfolio of Valentin Dosimont — a real human engineer, AI-assisted, building gaming infrastructure, AI systems, blockchain tooling, and open-source developer platforms.',
+        'Portfolio of Valentin Dosimont — Chief Technology Officer at Pupuce CORP, founder at Ligerian Labs, and builder across TypeScript, Rust, Go, TDD, AI agents, and technology management.',
     },
   },
   fr: {
@@ -106,9 +106,9 @@ export const ui = {
     switcher: { aria: 'Langue', en: 'EN', fr: 'FR' },
     home: {
       avatarAlt: 'Portrait de Valentin Dosimont',
-      heroHeadline: "Un vrai humain, assisté par l'IA. Du vrai logiciel.",
+      heroHeadline: 'CTO, fondateur et builder logiciel agentique.',
       heroSubtitle:
-        "Entre infrastructure, gaming, IA et blockchain.\nRust · Zig · TypeScript · Go · Cairo",
+        'Chief Technology Officer chez Pupuce CORP. Fondateur de Ligerian Labs.\nTypeScript · Rust · Go · TDD · agents IA',
       ctaProjects: 'Voir les projets',
       ctaContact: 'Me contacter',
       statRepos: 'Dépôts',
@@ -119,7 +119,7 @@ export const ui = {
       sectionStack: 'Stack',
       breadcrumb: { home: 'Accueil' },
       seoDescription:
-        "Un vrai ingénieur humain, assisté par l'IA — du vrai logiciel livré dans le gaming, l'IA et la blockchain. Rust, Zig, TypeScript, Go, Cairo. Travaux open source par Valentin Dosimont.",
+        "Valentin Dosimont est CTO, fondateur de Ligerian Labs et builder logiciel agentique, avec un focus TypeScript, Rust, Go, TDD, automatisation IA et technology management.",
     },
     projects: {
       breadcrumbHome: '~/',
@@ -146,10 +146,10 @@ export const ui = {
       breadcrumbCurrent: 'contact',
       title: 'Me contacter',
       lead:
-        "Si vous recrutez en infrastructure gaming, systèmes IA-natifs, outillage blockchain,\nou leadership ingénierie senior — envoyez du contexte. Je préfère les briefs concrets aux prises de contact génériques.",
+        "Si vous avez besoin de leadership ingénierie senior, de workflows de code agentique, d'automatisation IA,\nou de livraison pragmatique TypeScript/Rust/Go — envoyez du contexte. Je préfère les briefs concrets aux prises de contact génériques.",
       introTitle: 'Apportez un\nproblème difficile.',
       introText:
-        "Ce qui m'anime le plus sont les problèmes métier complexes avec des enjeux élevés. Poste d'ingénieur fondateur, défi d'architecture système ou collaboration open source — je suis à l'écoute.",
+        "Ce qui m'anime le plus sont les problèmes réels avec des enjeux élevés et une équipe qui livre. Leadership technique, agents IA, architecture de production ou collaboration open source — je suis à l'écoute.",
       checklistTitle: 'À inclure',
       checklistRole: 'Périmètre du rôle et attentes',
       checklistTeam: "Taille de l'équipe",
@@ -159,7 +159,7 @@ export const ui = {
       formTitle: 'Envoyer un message',
       seoTitle: 'Contact | Valentin Dosimont',
       seoDescription:
-        "Contactez Valentin Dosimont pour des rôles d'ingénierie, du conseil ou de la collaboration dans le gaming, l'IA et la blockchain.",
+        "Contactez Valentin Dosimont pour du leadership technique, de l'automatisation IA, des workflows de code agentique, du conseil ou une collaboration.",
       breadcrumbName: 'Contact',
     },
     form: {
@@ -182,9 +182,9 @@ export const ui = {
     footer: { github: 'GitHub' },
     card: { viewRepo: 'Voir le dépôt →' },
     site: {
-      title: 'Valentin Dosimont | Ingénieur Gaming, IA et Blockchain',
+      title: 'Valentin Dosimont | CTO, Fondateur, Builder Logiciel Agentique',
       description:
-        "Portfolio de Valentin Dosimont — un vrai ingénieur humain, assisté par l'IA, qui construit de l'infrastructure gaming, des systèmes IA, de l'outillage blockchain et des plateformes open source.",
+        "Portfolio de Valentin Dosimont — Chief Technology Officer chez Pupuce CORP, fondateur de Ligerian Labs, builder TypeScript, Rust, Go, TDD, agents IA et technology management.",
     },
   },
 } as const;

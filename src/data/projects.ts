@@ -47,8 +47,8 @@ const projectDefinitions_all: readonly ProjectSource[] = [
       fr: "Un runner Claude Code distribué qui exécute les tâches dans des VMs Firecracker isolées.",
     },
     problem: {
-      en: 'Agentic development only becomes credible at scale when execution is isolated, schedulable, and measurable.',
-      fr: "Le développement agentique ne devient crédible à l'échelle que quand l'exécution est isolée, planifiable et mesurable.",
+      en: 'Agentic coding only becomes credible at scale when execution is isolated, schedulable, and measurable.',
+      fr: "Le code agentique ne devient crédible à l'échelle que quand l'exécution est isolée, planifiable et mesurable.",
     },
     build: {
       en: 'Built an orchestrator, node operator, and VM agent architecture for running coding workloads across sandboxed machines.',
@@ -69,12 +69,12 @@ const projectDefinitions_all: readonly ProjectSource[] = [
     href: 'https://github.com/MartianGreed/claudeswarm',
     repository: 'MartianGreed/claudeswarm',
     summary: {
-      en: 'Automated ticket-to-PR orchestration with sandboxed execution and multi-provider issue sync.',
-      fr: "Orchestration automatisée ticket-vers-PR avec exécution isolée et synchronisation d'issues multi-providers.",
+      en: 'Automated ticket-to-PR orchestration for agentic coding with sandboxed execution and multi-provider issue sync.',
+      fr: "Orchestration automatisée ticket-vers-PR pour le code agentique, avec exécution isolée et synchronisation d'issues multi-providers.",
     },
     problem: {
-      en: 'AI-assisted engineering workflows need more than prompts; they need queues, state machines, review boundaries, and observability.',
-      fr: "Les workflows d'ingénierie assistés par IA demandent plus que des prompts : il faut des files, des machines à états, des frontières de revue et de l'observabilité.",
+      en: 'AI-assisted engineering workflows need more than prompts; they need queues, state machines, review boundaries, TDD gates, and observability.',
+      fr: "Les workflows d'ingénierie assistés par IA demandent plus que des prompts : il faut des files, des machines à états, des frontières de revue, des garde-fous TDD et de l'observabilité.",
     },
     build: {
       en: 'Designed a multi-service platform with API, dashboard, worker, PostgreSQL, pg-boss, and PR automation.',
