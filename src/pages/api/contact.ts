@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 import { site } from '../../config/site';
-import { formatContactEmail, parseContactForm } from '../../lib/contact';
+import { formatContactEmail, parseContactForm, parseContactPayload } from '../../lib/contact';
 
 const rateLimitWindowMs = 60_000;
 const maxRequestsPerWindow = 5;
@@ -15,8 +15,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   try {
-    const formData = await request.formData();
-    const payload = parseContactForm(formData);
+    const payload = await parseContactRequest(request);
 
     if (payload.website) {
       return json({ ok: true });
@@ -49,6 +48,22 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json({ error: 'Unable to send your message right now.' }, 500);
   }
 };
+
+async function parseContactRequest(request: Request) {
+  const contentType = request.headers.get('content-type') ?? '';
+
+  if (contentType.includes('application/json')) {
+    const body = await request.json();
+
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      throw new Error('Invalid JSON payload.');
+    }
+
+    return parseContactPayload(body as Record<string, unknown>);
+  }
+
+  return parseContactForm(await request.formData());
+}
 
 function checkRateLimit(ip: string) {
   const now = Date.now();

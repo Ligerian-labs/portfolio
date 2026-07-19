@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatContactEmail, parseContactForm } from './contact';
+import { formatContactEmail, parseContactForm, parseContactPayload } from './contact';
 
 describe('parseContactForm', () => {
   it('parses a valid contact payload', () => {
@@ -24,6 +24,24 @@ describe('parseContactForm', () => {
     formData.set('message', 'Too short');
 
     expect(() => parseContactForm(formData)).toThrowError();
+  });
+});
+
+describe('parseContactPayload', () => {
+  it('parses a valid JSON contact payload', () => {
+    expect(
+      parseContactPayload({
+        name: 'Valentin',
+        email: 'hello@example.com',
+        company: 'Ligerian Labs',
+        message: 'This is a valid message with enough detail to pass validation.',
+        website: '',
+      }),
+    ).toMatchObject({
+      name: 'Valentin',
+      email: 'hello@example.com',
+      company: 'Ligerian Labs',
+    });
   });
 });
 
