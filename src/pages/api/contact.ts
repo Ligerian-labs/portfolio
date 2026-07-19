@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import { ZodError } from 'zod';
 import { site } from '../../config/site';
 import { formatContactEmail, parseContactForm, parseContactPayload } from '../../lib/contact';
 
@@ -41,8 +42,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     return json({ ok: true });
   } catch (error) {
-    if (error instanceof Error && error.name === 'ZodError') {
-      return json({ error: 'Please check the form fields and try again.' }, 400);
+    if (error instanceof ZodError) {
+      return json({ error: error.issues[0]?.message || 'Please check the form fields and try again.' }, 400);
     }
 
     return json({ error: 'Unable to send your message right now.' }, 500);
