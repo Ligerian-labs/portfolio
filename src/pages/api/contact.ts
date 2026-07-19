@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
-import { ZodError } from 'zod';
 import { site } from '../../config/site';
 import { formatContactEmail, parseContactForm, parseContactPayload } from '../../lib/contact';
 
@@ -42,8 +41,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     return json({ ok: true });
   } catch (error) {
-    if (error instanceof ZodError) {
-      return json({ error: error.issues[0]?.message || 'Please check the form fields and try again.' }, 400);
+    const validationMessage = getValidationMessage(error);
+
+    if (validationMessage) {
+      return json({ error: validationMessage }, 400);
     }
 
     return json({ error: 'Unable to send your message right now.' }, 500);
@@ -52,6 +53,26 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
 function env(name: string) {
   return process.env[name] || import.meta.env[name];
+}
+
+function getValidationMessage(error: unknown) {
+  if (!error || typeof error !== 'object' || !('issues' in error)) {
+    return null;
+  }
+
+  const issues = (error as { issues?: unknown }).issues;
+
+  if (!Array.isArray(issues)) {
+    return null;
+  }
+
+  const firstIssue = issues[0];
+
+  if (!firstIssue || typeof firstIssue !== 'object' || !('message' in firstIssue)) {
+    return 'Please check the form fields and try again.';
+  }
+
+  return typeof firstIssue.message === 'string' ? firstIssue.message : 'Please check the form fields and try again.';
 }
 
 async function parseContactRequest(request: Request) {
