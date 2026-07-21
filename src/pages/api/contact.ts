@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 import { site } from '../../config/site';
-import { formatContactEmail, parseContactForm } from '../../lib/contact';
+import { formatContactEmail, parseContactForm, parseContactPayload } from '../../lib/contact';
 
 const rateLimitWindowMs = 60_000;
 const maxRequestsPerWindow = 5;
@@ -15,14 +15,13 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   try {
-    const formData = await request.formData();
-    const payload = parseContactForm(formData);
+    const payload = await parseContactRequest(request);
 
     if (payload.website) {
       return json({ ok: true });
     }
 
-    const apiKey = import.meta.env.RESEND_API_KEY;
+    const apiKey = env('RESEND_API_KEY');
 
     if (!apiKey) {
       return json({ error: 'Email delivery is not configured yet.' }, 500);
@@ -32,8 +31,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     const email = formatContactEmail(payload);
 
     await resend.emails.send({
-      from: import.meta.env.CONTACT_FROM_EMAIL || 'Portfolio <onboarding@resend.dev>',
-      to: import.meta.env.CONTACT_TO_EMAIL || site.email,
+      from: env('CONTACT_FROM_EMAIL') || 'Portfolio <onboarding@resend.dev>',
+      to: env('CONTACT_TO_EMAIL') || site.email,
       replyTo: payload.email,
       subject: email.subject,
       text: email.text,
@@ -42,13 +41,55 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
     return json({ ok: true });
   } catch (error) {
-    if (error instanceof Error && error.name === 'ZodError') {
-      return json({ error: 'Please check the form fields and try again.' }, 400);
+    const validationMessage = getValidationMessage(error);
+
+    if (validationMessage) {
+      return json({ error: validationMessage }, 400);
     }
 
     return json({ error: 'Unable to send your message right now.' }, 500);
   }
 };
+
+function env(name: string) {
+  return process.env[name] || import.meta.env[name];
+}
+
+function getValidationMessage(error: unknown) {
+  if (!error || typeof error !== 'object' || !('issues' in error)) {
+    return null;
+  }
+
+  const issues = (error as { issues?: unknown }).issues;
+
+  if (!Array.isArray(issues)) {
+    return null;
+  }
+
+  const firstIssue = issues[0];
+
+  if (!firstIssue || typeof firstIssue !== 'object' || !('message' in firstIssue)) {
+    return 'Please check the form fields and try again.';
+  }
+
+  return typeof firstIssue.message === 'string' ? firstIssue.message : 'Please check the form fields and try again.';
+}
+
+async function parseContactRequest(request: Request) {
+  const contentType = request.headers.get('content-type') ?? '';
+
+  if (contentType.includes('application/json')) {
+    const body = await request.json();
+
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      throw new Error('Invalid JSON payload.');
+    }
+
+    return parseContactPayload(body as Record<string, unknown>);
+  }
+
+  return parseContactForm(await request.formData());
+}
 
 function checkRateLimit(ip: string) {
   const now = Date.now();

@@ -17,15 +17,27 @@ export const contactSchema = z.object({
 export type ContactInput = z.infer<typeof contactSchema>;
 
 export function parseContactForm(formData: FormData): ContactInput {
-  const payload = {
-    name: String(formData.get('name') ?? ''),
-    email: String(formData.get('email') ?? ''),
-    company: String(formData.get('company') ?? ''),
-    message: String(formData.get('message') ?? ''),
-    website: String(formData.get('website') ?? ''),
-  };
+  return parseContactPayload({
+    name: formData.get('name'),
+    email: formData.get('email'),
+    company: formData.get('company'),
+    message: formData.get('message'),
+    website: formData.get('website'),
+  });
+}
 
-  return contactSchema.parse(payload);
+export function parseContactPayload(payload: Record<string, unknown>): ContactInput {
+  return contactSchema.parse({
+    name: stringValue(payload.name),
+    email: stringValue(payload.email),
+    company: stringValue(payload.company),
+    message: stringValue(payload.message),
+    website: stringValue(payload.website),
+  });
+}
+
+function stringValue(value: unknown) {
+  return typeof value === 'string' ? value : '';
 }
 
 export function formatContactEmail(input: ContactInput) {
