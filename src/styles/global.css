@@ -232,16 +232,9 @@ main > section:first-child {
 }
 
 .logo-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   width: 34px;
   height: 34px;
-  background: var(--accent);
-  color: var(--on-accent);
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 13px;
 }
 
 .site-nav {

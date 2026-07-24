@@ -39,7 +39,11 @@ const ogLocale = t(locale).html.ogLocale;
   <link rel="alternate" hreflang={alt.locale} href={alt.href} />
 ))}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
 <link rel="icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#ECE8DF" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,6 +59,17 @@ const ogLocale = t(locale).html.ogLocale;
 <meta property="og:site_name" content="Valentin Dosimont" />
 <meta property="og:locale" content={ogLocale} />
 {image && <meta property="og:image" content={image} />}
+{image && <meta property="og:image:width" content="1200" />}
+{image && <meta property="og:image:height" content="630" />}
+{image && (
+  <meta
+    property="og:image:alt"
+    content="Valentin Dosimont — Fractional CTO & Forward Deployed Engineer"
+  />
+)}
+<meta property="og:image" content={new URL('/og-image-square.png', canonical).toString()} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="1200" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />

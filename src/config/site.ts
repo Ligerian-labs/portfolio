@@ -10,7 +10,7 @@ export const site = {
   email: 'bonjour@ligerianlabs.fr',
   bookCall: 'https://calendar.app.google/FzMpoa3KzpLGfZVU7',
   avatar: '/photo.jpg',
-  ogImage: '/og-image.svg',
+  ogImage: '/og-image.png',
   keywords: [
     'Valentin Dosimont',
     'Fractional CTO',

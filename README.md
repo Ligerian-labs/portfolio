@@ -1,6 +1,8 @@
+<img src="images/brand/logo-lockup.png" alt="Valentin Dosimont — Fractional CTO" width="420" />
+
 # Valentin Dosimont Portfolio
 
-Astro SSR portfolio for `valentin.ligerianlabs.fr`, designed to position Valentin Dosimont for gaming, AI, and blockchain companies while surfacing curated public work from GitHub.
+Astro SSR portfolio for `valentin.ligerianlabs.fr` — Fractional CTO & Forward Deployed Engineer. Brand assets (logo, icons, og-images) live in `images/brand/`; the vector logo is also served at `/logo.svg`.
 
 ## Overview
 
