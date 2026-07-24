@@ -9,25 +9,47 @@ export const ui = {
       experience: 'Experience',
       projects: 'Projects',
       contact: 'Contact',
-      hire: 'Hire Me',
+      hire: 'Book a call',
     },
     switcher: { aria: 'Language', en: 'EN', fr: 'FR' },
     home: {
-      avatarAlt: 'Portrait of Valentin Dosimont',
-      heroHeadline: 'A real human, AI-assisted. Building real software.',
-      heroSubtitle:
-        'Infrastructure engineer at the intersection of gaming, AI, and blockchain.\nRust · Zig · TypeScript · Go · Cairo',
-      ctaProjects: 'View Projects',
-      ctaContact: 'Get in Touch',
-      statRepos: 'Repos',
-      statSectors: 'Sectors',
-      statYears: 'Yrs Experience',
-      sectionFeatured: 'Featured Work',
+      photoAlt: 'Portrait of Valentin Dosimont',
+      kicker: 'Fractional CTO · Forward Deployed Engineer',
+      location: 'Angers, France · CET · Remote-first',
+      availableNow: 'Available now',
+      bookCall: 'Book a call →',
+      downloadResume: 'Download PDF ↓',
+      pitchHeadline: 'Bring me the ambiguous, business-critical build nobody else wants to own.',
+      pitchText:
+        'I lead discovery, architecture, and delivery end-to-end — then hand back a system your team can actually run. Domain-driven, event-driven, boringly reliable. Twelve years across gaming, AI, and blockchain.',
+      stat1Num: '12+',
+      stat1Label: 'Yrs in production',
+      stat2Num: '60+',
+      stat2Label: 'Open-source repos',
+      stat3Num: '03',
+      stat3Label: 'Gaming · AI · chain',
+      stat4Num: 'E2E',
+      stat4Label: 'Discovery → deploy',
+      sectionHow: 'How I work',
+      how1Title: 'Discovery → spec',
+      how1Text:
+        'Fuzzy business goals become a plan your team believes in — stakeholder translation, domain modeling, honest scoping.',
+      how2Title: 'Architecture that ages',
+      how2Text:
+        'DDD, event-driven, CQRS, microservices. Systems that survive contact with production and change.',
+      how3Title: 'Ship, then hand off',
+      how3Text:
+        'End-to-end delivery — code, CI/CD, infra, reviews — plus the practices so your team keeps shipping without me.',
+      sectionOss: 'Selected open source',
+      ossNote:
+        'Plus dojo.js, torii-core & arcade — open-source onchain gaming infrastructure shipped at Cartridge.gg.',
       sectionExperience: 'Experience',
       sectionStack: 'Stack',
+      ctaTitle: 'Have a build no one\nwants to own?',
+      ctaMeta: 'Architecture on AWS · Cloud University 2020 — FR native · EN full professional',
       breadcrumb: { home: 'Home' },
       seoDescription:
-        'A real human engineer, AI-assisted — shipping real software across gaming, AI, and blockchain. Rust, Zig, TypeScript, Go, Cairo. Open-source work by Valentin Dosimont.',
+        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. I turn ambiguous problems into production systems. Rust, Zig, Go, TypeScript, Cairo.',
     },
     projects: {
       breadcrumbHome: '~/',
@@ -90,9 +112,9 @@ export const ui = {
     footer: { github: 'GitHub' },
     card: { viewRepo: 'View repo →' },
     site: {
-      title: 'Valentin Dosimont | Gaming, AI, and Blockchain Engineer',
+      title: 'Valentin Dosimont · Fractional CTO',
       description:
-        'Portfolio of Valentin Dosimont — a real human engineer, AI-assisted, building gaming infrastructure, AI systems, blockchain tooling, and open-source developer platforms.',
+        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. I turn ambiguous problems into production systems. Rust, Zig, Go, TypeScript, Cairo.',
     },
   },
   fr: {
@@ -101,25 +123,47 @@ export const ui = {
       experience: 'Expérience',
       projects: 'Projets',
       contact: 'Contact',
-      hire: 'Travaillons ensemble',
+      hire: 'Réserver un appel',
     },
     switcher: { aria: 'Langue', en: 'EN', fr: 'FR' },
     home: {
-      avatarAlt: 'Portrait de Valentin Dosimont',
-      heroHeadline: "Un vrai humain, assisté par l'IA. Du vrai logiciel.",
-      heroSubtitle:
-        "Entre infrastructure, gaming, IA et blockchain.\nRust · Zig · TypeScript · Go · Cairo",
-      ctaProjects: 'Voir les projets',
-      ctaContact: 'Me contacter',
-      statRepos: 'Dépôts',
-      statSectors: 'Secteurs',
-      statYears: "Ans d'expérience",
-      sectionFeatured: 'Travaux phares',
+      photoAlt: 'Portrait de Valentin Dosimont',
+      kicker: 'CTO à temps partagé · Forward Deployed Engineer',
+      location: 'Angers, France · CET · Full remote',
+      availableNow: 'Disponible',
+      bookCall: 'Réserver un appel →',
+      downloadResume: 'Télécharger le PDF ↓',
+      pitchHeadline: "Confiez-moi le chantier ambigu et critique dont personne d'autre ne veut.",
+      pitchText:
+        "Je mène discovery, architecture et livraison de bout en bout — puis je vous rends un système que votre équipe peut réellement faire tourner. Domain-driven, event-driven, fiable jusqu'à l'ennui. Douze ans entre gaming, IA et blockchain.",
+      stat1Num: '12+',
+      stat1Label: 'Ans en production',
+      stat2Num: '60+',
+      stat2Label: 'Dépôts open source',
+      stat3Num: '03',
+      stat3Label: 'Gaming · IA · chain',
+      stat4Num: 'E2E',
+      stat4Label: 'Discovery → déploiement',
+      sectionHow: 'Ma façon de travailler',
+      how1Title: 'Discovery → spec',
+      how1Text:
+        "Des objectifs métier flous deviennent un plan auquel votre équipe croit — traduction des enjeux, modélisation du domaine, cadrage honnête.",
+      how2Title: 'Une architecture qui vieillit bien',
+      how2Text:
+        'DDD, event-driven, CQRS, microservices. Des systèmes qui survivent au contact de la production et du changement.',
+      how3Title: 'Livrer, puis transmettre',
+      how3Text:
+        'Livraison de bout en bout — code, CI/CD, infra, revues — plus les pratiques pour que votre équipe continue de livrer sans moi.',
+      sectionOss: 'Sélection open source',
+      ossNote:
+        'Sans oublier dojo.js, torii-core & arcade — infrastructure open source de gaming onchain livrée chez Cartridge.gg.',
       sectionExperience: 'Expérience',
       sectionStack: 'Stack',
+      ctaTitle: 'Un chantier dont personne\nne veut ?',
+      ctaMeta: 'Architecture on AWS · Cloud University 2020 — FR natif · EN professionnel complet',
       breadcrumb: { home: 'Accueil' },
       seoDescription:
-        "Un vrai ingénieur humain, assisté par l'IA — du vrai logiciel livré dans le gaming, l'IA et la blockchain. Rust, Zig, TypeScript, Go, Cairo. Travaux open source par Valentin Dosimont.",
+        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. Je transforme des problèmes ambigus en systèmes en production. Rust, Zig, Go, TypeScript, Cairo.',
     },
     projects: {
       breadcrumbHome: '~/',
@@ -182,9 +226,9 @@ export const ui = {
     footer: { github: 'GitHub' },
     card: { viewRepo: 'Voir le dépôt →' },
     site: {
-      title: 'Valentin Dosimont | Ingénieur Gaming, IA et Blockchain',
+      title: 'Valentin Dosimont · CTO à temps partagé',
       description:
-        "Portfolio de Valentin Dosimont — un vrai ingénieur humain, assisté par l'IA, qui construit de l'infrastructure gaming, des systèmes IA, de l'outillage blockchain et des plateformes open source.",
+        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. Je transforme des problèmes ambigus en systèmes en production. Rust, Zig, Go, TypeScript, Cairo.',
     },
   },
 } as const;

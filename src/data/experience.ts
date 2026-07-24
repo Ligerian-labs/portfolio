@@ -3,69 +3,80 @@ import type { Locale } from '../i18n/ui';
 type Translated = { en: string; fr: string };
 
 type ExperienceSource = {
-  company: string;
+  company: Translated;
   location: string;
   role: Translated;
   period: Translated;
   summary: Translated;
-  tags: readonly string[];
+  accent?: boolean;
 };
 
 const experiences_all: readonly ExperienceSource[] = [
   {
-    company: 'Cartridge.gg',
-    location: 'New York',
-    role: { en: 'Engineer', fr: 'Ingénieur' },
-    period: { en: 'Sep 2024 - Present', fr: 'Sept. 2024 - aujourd’hui' },
-    summary: {
-      en: 'Building gaming infrastructure, blockchain services, and open source libraries with Rust and TypeScript.',
-      fr: "Construction d'infrastructure gaming, de services blockchain et de bibliothèques open source en Rust et TypeScript.",
+    company: { en: 'Pupuce CORP', fr: 'Pupuce CORP' },
+    location: 'Angers · Remote',
+    role: {
+      en: 'Fractional CTO / Forward Deployed Engineer',
+      fr: 'CTO à temps partagé / Forward Deployed Engineer',
     },
-    tags: ['Rust', 'TypeScript', 'Microservices', 'Blockchain', 'Gaming'],
+    period: { en: '2021 → Now', fr: '2021 → Auj.' },
+    summary: {
+      en: 'Discovery, architecture & delivery for complex business apps — DDD + event-driven, owned end-to-end.',
+      fr: "Discovery, architecture & livraison d'applications métier complexes — DDD + event-driven, prises en charge de bout en bout.",
+    },
+    accent: true,
   },
   {
-    company: 'Pupuce CORP',
-    location: 'Angers',
-    role: { en: 'CTO', fr: 'CTO' },
-    period: { en: 'May 2021 - Present', fr: 'Mai 2021 - aujourd’hui' },
-    summary: {
-      en: 'Leading architecture and delivery for tech clients with an emphasis on systems design, code quality, and pragmatic execution.',
-      fr: "Pilotage de l'architecture et de la livraison pour des clients tech, avec un accent sur le design système, la qualité du code et l'exécution pragmatique.",
+    company: { en: 'Cartridge.gg', fr: 'Cartridge.gg' },
+    location: 'NYC · Remote',
+    role: {
+      en: 'Software Engineer · client engagement',
+      fr: 'Software Engineer · mission client',
     },
-    tags: ['Rust', 'Go', 'Microservices', 'Serverless', 'Consulting'],
+    period: { en: '2024 → 2026', fr: '2024 → 2026' },
+    summary: {
+      en: 'Rust & TypeScript gaming and onchain infrastructure; maintained dojo.js, torii-core, arcade.',
+      fr: 'Infrastructure gaming et onchain en Rust & TypeScript ; mainteneur de dojo.js, torii-core, arcade.',
+    },
   },
   {
-    company: 'Pasquinade.fr',
+    company: { en: 'Pasquinade.fr', fr: 'Pasquinade.fr' },
+    location: 'Paris · Remote',
+    role: {
+      en: 'Lead Developer / CTO · client engagement',
+      fr: 'Lead Développeur / CTO · mission client',
+    },
+    period: { en: '2020 → 2021', fr: '2020 → 2021' },
+    summary: {
+      en: 'Migrated AWS ECS → Kubernetes; introduced CI/CD and tooling with Ansible & Terraform.',
+      fr: "Migration d'AWS ECS → Kubernetes ; mise en place du CI/CD et de l'outillage avec Ansible & Terraform.",
+    },
+  },
+  {
+    company: {
+      en: 'FioulMarket / Total Proxi Énergies',
+      fr: 'FioulMarket / Total Proxi Énergies',
+    },
+    location: 'Rueil · Remote',
+    role: {
+      en: 'Technical Lead · client engagement',
+      fr: 'Technical Lead · mission client',
+    },
+    period: { en: '2017 → 2020', fr: '2017 → 2020' },
+    summary: {
+      en: 'Led technical decisions and weekly production releases on a Symfony + React platform.',
+      fr: 'Pilotage des décisions techniques et des mises en production hebdomadaires sur une plateforme Symfony + React.',
+    },
+  },
+  {
+    company: { en: 'Independent', fr: 'Indépendant' },
     location: 'Paris',
-    role: { en: 'Lead Developer / CTO', fr: 'Lead Développeur / CTO' },
-    period: { en: 'Oct 2020 - May 2021', fr: 'Oct. 2020 - Mai 2021' },
+    role: { en: 'Software Developer', fr: 'Développeur' },
+    period: { en: '2013 → 2017', fr: '2013 → 2017' },
     summary: {
-      en: 'Drove CI/CD, infrastructure migrations from AWS ECS to Kubernetes, and engineering quality across backend-heavy systems.',
-      fr: "Mise en place du CI/CD, migrations d'infrastructure d'AWS ECS vers Kubernetes, et qualité d'ingénierie sur des systèmes backend-lourds.",
+      en: 'Frontend and backend web applications for clients across the stack.',
+      fr: 'Applications web frontend et backend pour des clients, sur toute la stack.',
     },
-    tags: ['Node.js', 'Rust', 'Kubernetes', 'CI/CD', 'Open Source'],
-  },
-  {
-    company: 'Fioulmarket.fr',
-    location: 'Paris',
-    role: { en: 'Lead Developer', fr: 'Lead Développeur' },
-    period: { en: 'Sep 2017 - Oct 2020', fr: 'Sept. 2017 - Oct. 2020' },
-    summary: {
-      en: 'Owned frontend technical choices, code reviews, and pairing practices to raise quality across the team.',
-      fr: "Responsable des choix techniques frontend, des revues de code et des pratiques de pair programming pour élever la qualité de l'équipe.",
-    },
-    tags: ['Frontend', 'Code Review', 'Pair Programming'],
-  },
-  {
-    company: 'Freelance',
-    location: 'Paris',
-    role: { en: 'Developer', fr: 'Développeur' },
-    period: { en: 'Sep 2013 - Jan 2017', fr: 'Sept. 2013 - Jan. 2017' },
-    summary: {
-      en: 'Built client work across stacks while establishing the engineering fundamentals that still shape how I ship today.',
-      fr: "Réalisations clients sur différents stacks, en posant les fondamentaux d'ingénierie qui guident encore mes livraisons aujourd'hui.",
-    },
-    tags: ['Freelance', 'Full Stack'],
   },
 ];
 
@@ -75,33 +86,68 @@ export type Experience = {
   role: string;
   period: string;
   summary: string;
-  tags: readonly string[];
+  accent: boolean;
 };
 
 export function getExperiences(locale: Locale): readonly Experience[] {
   return experiences_all.map((exp) => ({
-    company: exp.company,
+    company: exp.company[locale],
     location: exp.location,
     role: exp.role[locale],
     period: exp.period[locale],
     summary: exp.summary[locale],
-    tags: exp.tags,
+    accent: exp.accent ?? false,
   }));
 }
 
-export const skills = [
-  'Rust',
-  'Zig',
-  'TypeScript',
-  'Go',
-  'JavaScript',
-  'Kubernetes',
-  'Ansible',
-  'Terraform',
-  'Microservices',
-  'jj-vcs',
-  'GitHub',
-  'Vim',
-  'OpenCode',
-  'Codex',
-] as const;
+type StackGroupSource = {
+  label: Translated;
+  items: readonly Translated[];
+};
+
+const same = (s: string): Translated => ({ en: s, fr: s });
+
+const stackGroups_all: readonly StackGroupSource[] = [
+  {
+    label: { en: 'Systems', fr: 'Systèmes' },
+    items: ['Rust', 'Zig', 'Go', 'TypeScript', 'JavaScript', 'Node.js', 'Cairo'].map(same),
+  },
+  {
+    label: { en: 'Architecture', fr: 'Architecture' },
+    items: [
+      same('DDD'),
+      same('Event-driven'),
+      same('CQRS'),
+      same('Microservices'),
+      { en: 'Distributed systems', fr: 'Systèmes distribués' },
+      { en: 'API design', fr: "Design d'API" },
+    ],
+  },
+  {
+    label: { en: 'Infra', fr: 'Infra' },
+    items: ['Kubernetes', 'AWS', 'Terraform', 'Ansible', 'Docker', 'CI/CD', 'Serverless'].map(same),
+  },
+  {
+    label: { en: 'Delivery', fr: 'Livraison' },
+    items: [
+      same('Discovery'),
+      { en: 'Stakeholder translation', fr: 'Traduction des enjeux' },
+      { en: 'Code review', fr: 'Revue de code' },
+      same('Scrum'),
+      { en: 'Pairing', fr: 'Pair programming' },
+      { en: 'OSS maintenance', fr: 'Maintenance OSS' },
+    ],
+  },
+];
+
+export type StackGroup = {
+  label: string;
+  items: readonly string[];
+};
+
+export function getStackGroups(locale: Locale): readonly StackGroup[] {
+  return stackGroups_all.map((group) => ({
+    label: group.label[locale],
+    items: group.items.map((item) => item[locale]),
+  }));
+}

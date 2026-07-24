@@ -1,18 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ProjectCard from '../ProjectCard.astro';
 import { site } from '../../config/site';
-import { getExperiences, skills } from '../../data/experience';
+import { getExperiences, getStackGroups } from '../../data/experience';
 import { getProjects } from '../../data/projects';
-import { getGithubShowcase } from '../../lib/github';
 import { buildBreadcrumbSchema, buildPersonSchema, buildSeo, buildWebsiteSchema } from '../../lib/seo';
-import { localizedPath, t, type Locale } from '../../i18n/ui';
+import { t, type Locale } from '../../i18n/ui';
 
 type Props = { locale: Locale };
 const { locale } = Astro.props;
 
 const s = t(locale);
-const github = await getGithubShowcase();
 const seo = buildSeo({
   title: s.site.title,
   description: s.home.seoDescription,
@@ -21,10 +18,22 @@ const seo = buildSeo({
   locale,
 });
 
+const resumePdf =
+  locale === 'fr' ? '/valentin-dosimont-cv-fr.pdf' : '/valentin-dosimont-resume-en.pdf';
 const experiences = getExperiences(locale);
-const projects = getProjects(locale);
-const featured = projects.filter((project) => project.featured);
-const barCycle = ['primary', 'light', 'bright', 'mid', 'pale'] as const;
+const stackGroups = getStackGroups(locale);
+const featured = getProjects(locale).filter((project) => project.featured);
+const stats = [
+  { num: s.home.stat1Num, label: s.home.stat1Label, accent: false },
+  { num: s.home.stat2Num, label: s.home.stat2Label, accent: true },
+  { num: s.home.stat3Num, label: s.home.stat3Label, accent: false },
+  { num: s.home.stat4Num, label: s.home.stat4Label, accent: false },
+] as const;
+const how = [
+  { num: '01', title: s.home.how1Title, text: s.home.how1Text },
+  { num: '02', title: s.home.how2Title, text: s.home.how2Text },
+  { num: '03', title: s.home.how3Title, text: s.home.how3Text },
+] as const;
 ---
 
 <Layout
@@ -36,70 +45,118 @@ const barCycle = ['primary', 'light', 'bright', 'mid', 'pale'] as const;
   ]}
   locale={locale}
 >
-  <section class="hero">
-    <div class="hero__avatar">
-      <img src={site.avatar} alt={s.home.avatarAlt} loading="eager" />
+  <section class="hero-grid rise">
+    <div class="hero-main">
+      <span class="label">{s.home.kicker}</span>
+      <h1 class="hero-name">Valentin<br />Dosimont</h1>
+      <div class="hero-loc">{s.home.location}</div>
     </div>
-    <h1 class="hero__headline">{s.home.heroHeadline}</h1>
-    <p class="hero__subtitle">{s.home.heroSubtitle}</p>
-    <div class="hero__cta">
-      <a class="btn btn--primary" href={localizedPath(locale, '/projects')}>{s.home.ctaProjects}</a>
-      <a class="btn btn--outline" href={localizedPath(locale, '/contact')}>{s.home.ctaContact}</a>
-    </div>
-  </section>
-
-  <section class="stat-bar">
-    <div class="stat-bar__cell">
-      <span class="stat-bar__num">60+</span>
-      <span class="stat-bar__label">{s.home.statRepos}</span>
-    </div>
-    <span class="stat-bar__divider" aria-hidden="true"></span>
-    <div class="stat-bar__cell">
-      <span class="stat-bar__num">3</span>
-      <span class="stat-bar__label">{s.home.statSectors}</span>
-    </div>
-    <span class="stat-bar__divider" aria-hidden="true"></span>
-    <div class="stat-bar__cell">
-      <span class="stat-bar__num">10+</span>
-      <span class="stat-bar__label">{s.home.statYears}</span>
+    <div class="hero-panel">
+      <div class="avail">
+        <span class="avail__dot" aria-hidden="true"></span>
+        {s.home.availableNow}
+      </div>
+      <div>
+        <a class="btn-book" href={site.bookCall} target="_blank" rel="noreferrer">{s.home.bookCall}</a>
+        <a class="btn-download" href={resumePdf} download>{s.home.downloadResume}</a>
+        <div class="hero-panel__email">{site.email}</div>
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <span class="section-eyebrow">{s.home.sectionFeatured}</span>
-    <div class="card-grid">
-      {featured.map((project, i) => (
-        <ProjectCard
-          project={project}
-          signal={github.repos[project.slug]}
-          variant="featured"
-          bar={barCycle[i % barCycle.length]}
-          locale={locale}
-        />
+  <section class="band pitch-grid rise" style="animation-delay: 0.07s">
+    <div class="pitch-photo">
+      <img class="pitch-photo__img" src={site.avatar} alt={s.home.photoAlt} loading="eager" />
+    </div>
+    <div class="pitch-body">
+      <h2 class="pitch-headline">{s.home.pitchHeadline}</h2>
+      <p class="pitch-text">{s.home.pitchText}</p>
+      <div class="pitch-links">github.com/{site.githubHandle} · {site.domain}</div>
+    </div>
+  </section>
+
+  <section class="band stats-grid rise" style="animation-delay: 0.14s">
+    {stats.map((stat) => (
+      <div class:list={['stat', stat.accent && 'stat--accent']}>
+        <div class="stat__num">{stat.num}</div>
+        <div class="stat__label">{stat.label}</div>
+      </div>
+    ))}
+  </section>
+
+  <section class="band rise" style="animation-delay: 0.21s">
+    <div class="band__head"><span class="label">{s.home.sectionHow}</span></div>
+    <div class="how-grid">
+      {how.map((cell) => (
+        <div class="how-cell">
+          <div class="how-cell__num">{cell.num}</div>
+          <h3>{cell.title}</h3>
+          <p>{cell.text}</p>
+        </div>
       ))}
     </div>
   </section>
 
-  <section class="section">
-    <span class="section-eyebrow section-eyebrow--bright">{s.home.sectionExperience}</span>
-    <ol class="exp-list">
-      {experiences.map((exp, i) => (
-        <li class="exp-row" data-bar={barCycle[i % barCycle.length]}>
-          <span class="exp-row__bar" aria-hidden="true"></span>
-          <div class="exp-row__content">
-            <span class="exp-row__company">{exp.role} · {exp.company}</span>
-            <span class="exp-row__role">{exp.location} · {exp.period}</span>
-            <p class="exp-row__summary">{exp.summary}</p>
+  <section class="band rise" style="animation-delay: 0.28s">
+    <div class="oss-head">
+      <span class="label">{s.home.sectionOss}</span>
+      <a class="oss-link" href={site.github} rel="noreferrer">github.com/{site.githubHandle} →</a>
+    </div>
+    <div class="oss-grid">
+      {featured.map((project) => (
+        <a class="oss-cell" href={project.href} rel="noreferrer">
+          <div class="oss-cell__top">
+            <span class="oss-cell__name">{project.name}</span>
+            <span class="oss-cell__meta">{project.tagline}</span>
           </div>
+          <p class="oss-cell__desc">{project.summary}</p>
+        </a>
+      ))}
+    </div>
+    <div class="oss-note">{s.home.ossNote}</div>
+  </section>
+
+  <section class="band rise" style="animation-delay: 0.35s">
+    <div class="band__head"><span class="label">{s.home.sectionExperience}</span></div>
+    <ol class="exp-list">
+      {experiences.map((exp) => (
+        <li class="exp-item">
+          <div>
+            <div class="exp-item__title">
+              {exp.company}
+              <span class:list={['exp-item__role', exp.accent && 'exp-item__role--accent']}>
+                — {exp.role}
+              </span>
+            </div>
+            <div class="exp-item__summary">{exp.summary}</div>
+          </div>
+          <div class="exp-item__when">{exp.period}<br />{exp.location}</div>
         </li>
       ))}
     </ol>
   </section>
 
-  <section class="section">
-    <span class="section-eyebrow section-eyebrow--mid">{s.home.sectionStack}</span>
-    <ul class="stack-row">
-      {skills.map((skill) => <li class="stack-pill">{skill}</li>)}
-    </ul>
+  <section class="band stack-band rise" style="animation-delay: 0.42s">
+    <span class="label">{s.home.sectionStack}</span>
+    <div class="stack-list">
+      {stackGroups.map((group) => (
+        <div class="stack-group">
+          <div class="stack-group__label">{group.label}</div>
+          <ul class="stack-tags">
+            {group.items.map((item) => (
+              <li class="pill">{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="band cta-band rise" style="animation-delay: 0.49s">
+    <div>
+      <h2 class="cta-band__title">{s.home.ctaTitle}</h2>
+      <div class="cta-band__meta">{s.home.ctaMeta}</div>
+    </div>
+    <a class="btn-book btn-book--lg" href={site.bookCall} target="_blank" rel="noreferrer">{s.home.bookCall}</a>
   </section>
 </Layout>

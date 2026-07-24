@@ -1,7 +1,6 @@
 ---
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import MatrixTrail from '../components/MatrixTrail.astro';
 import SeoHead from '../components/SeoHead.astro';
 import { site } from '../config/site';
 import type { Locale } from '../i18n/ui';
@@ -40,13 +39,14 @@ const pathname = Astro.url.pathname;
     />
   </head>
   <body>
-    <MatrixTrail />
     <div class="page-shell">
-      <Header pathname={pathname} locale={locale} />
-      <main>
-        <slot />
-      </main>
-      <Footer pathname={pathname} locale={locale} />
+      <div class="sheet">
+        <Header pathname={pathname} locale={locale} />
+        <main>
+          <slot />
+        </main>
+        <Footer pathname={pathname} locale={locale} />
+      </div>
     </div>
   </body>
 </html>

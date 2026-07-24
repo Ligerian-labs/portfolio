@@ -6,13 +6,11 @@ import { t, type Locale } from '../i18n/ui';
 type Props = {
   project: ProjectDefinition;
   signal?: GitHubRepoSignal;
-  variant?: 'featured' | 'grid';
-  bar?: 'primary' | 'bright' | 'light' | 'mid' | 'pale';
   license?: string;
   locale: Locale;
 };
 
-const { project, signal, variant = 'featured', bar = 'primary', license, locale } = Astro.props;
+const { project, signal, license, locale } = Astro.props;
 
 const filterCategories: readonly ProjectCategory[] = project.categories;
 const dataCats = filterCategories.join(' ');
@@ -22,50 +20,24 @@ const metaText = license ? `${language} · ${license}` : language;
 const viewRepo = t(locale).card.viewRepo;
 ---
 
-{variant === 'featured' ? (
-  <article
-    class="feature-card"
-    data-bar={bar}
-    data-categories={dataCats}
-  >
-    <span class="feature-card__bar" aria-hidden="true"></span>
-    <div class="feature-card__body">
-      <h3 class="feature-card__name">{project.name}</h3>
-      <p class="feature-card__desc">{project.summary}</p>
-      <ul class="tag-row">
-        <li class="tag-pill" data-cat={filterCategories[0]}>{language}</li>
-        {filterCategories.slice(0, 2).map((cat) => (
-          <li class="tag-pill" data-cat={cat}>{cat}</li>
-        ))}
-      </ul>
-      <a class="feature-card__link" href={project.href} rel="noreferrer">{viewRepo}</a>
-    </div>
-  </article>
-) : (
-  <article
-    class="project-card"
-    data-bar={bar}
-    data-categories={dataCats}
-  >
-    <span class="project-card__bar" aria-hidden="true"></span>
-    <div class="project-card__body">
-      <header class="project-card__top">
-        <h3 class="project-card__name">{project.name}</h3>
-        <span class="project-card__year">{project.year}</span>
-      </header>
-      <ul class="tag-row">
-        {filterCategories.map((cat) => (
-          <li class="tag-pill" data-cat={cat}>{cat}</li>
-        ))}
-      </ul>
-      <p class="project-card__desc">{project.summary}</p>
-      <footer class="project-card__foot">
-        <span class="project-card__meta">
-          {metaText}
-          {stars > 0 && <span> · ★ {stars}</span>}
-        </span>
-        <a class="project-card__link" href={project.href} rel="noreferrer">{viewRepo}</a>
-      </footer>
-    </div>
-  </article>
-)}
+<article class="project-card" data-categories={dataCats}>
+  <div class="project-card__body">
+    <header class="project-card__top">
+      <h3 class="project-card__name">{project.name}</h3>
+      <span class="project-card__year">{project.year}</span>
+    </header>
+    <ul class="tag-row">
+      {filterCategories.map((cat) => (
+        <li class="tag-pill" data-cat={cat}>{cat}</li>
+      ))}
+    </ul>
+    <p class="project-card__desc">{project.summary}</p>
+    <footer class="project-card__foot">
+      <span class="project-card__meta">
+        {metaText}
+        {stars > 0 && <span> · ★ {stars}</span>}
+      </span>
+      <a class="project-card__link" href={project.href} rel="noreferrer">{viewRepo}</a>
+    </footer>
+  </div>
+</article>

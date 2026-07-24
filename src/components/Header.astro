@@ -1,5 +1,6 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import { site } from '../config/site';
 import { localizedPath, stripLocale, t, type Locale } from '../i18n/ui';
 
 type Props = {
@@ -39,7 +40,7 @@ function isActive(path: string) {
         {link.label}
       </a>
     ))}
-    <a class="pill--hire" href={localizedPath(locale, '/contact')}>{strings.nav.hire}</a>
+    <a class="pill--hire" href={site.bookCall} target="_blank" rel="noreferrer">{strings.nav.hire}</a>
     <LanguageSwitcher locale={locale} pathname={pathname} />
   </nav>
 </header>

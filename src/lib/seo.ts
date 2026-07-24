@@ -46,11 +46,20 @@ export function buildPersonSchema() {
     '@type': 'Person',
     name: site.name,
     url: site.url,
-    image: site.avatar,
+    image: new URL(site.avatar, site.url).toString(),
     email: site.email,
     sameAs: [site.github],
-    jobTitle: 'Engineer',
-    knowsAbout: ['Gaming infrastructure', 'AI systems', 'Blockchain', 'Rust', 'TypeScript', 'Open source'],
+    jobTitle: 'Fractional CTO',
+    knowsAbout: [
+      'Software architecture',
+      'Domain-driven design',
+      'Event-driven systems',
+      'Rust',
+      'Zig',
+      'Go',
+      'TypeScript',
+      'Cairo',
+    ],
   };
 }
 

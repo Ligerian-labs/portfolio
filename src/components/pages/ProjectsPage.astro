@@ -21,7 +21,7 @@ const seo = buildSeo({
 
 const projects = getProjects(locale);
 const contributionHighlights = getContributionHighlights(locale);
-const aiProjects = projects.filter((p) => ['marathon', 'claudeswarm'].includes(p.slug));
+const aiProjects = projects.filter((p) => ['marathon', 'claudeswarm', 'atelier'].includes(p.slug));
 const tooling = projects.filter((p) =>
   ['sqlv', 'autobahn-nvim', 'ccmanager', 'inshtaller', 'rust-verify-keplr-signature'].includes(p.slug),
 );
@@ -59,34 +59,29 @@ const tooling = projects.filter((p) =>
     </div>
   </section>
 
-  <section class="section section--no-top project-section" data-section="ai">
-    <span class="section-eyebrow section-eyebrow--light">{s.projects.sectionAi}</span>
+  <section class="section project-section" data-section="ai">
+    <span class="section-eyebrow">{s.projects.sectionAi}</span>
     <div class="card-grid card-grid--2">
-      {aiProjects.map((project, i) => (
+      {aiProjects.map((project) => (
         <ProjectCard
           project={project}
           signal={github.repos[project.slug]}
-          variant="grid"
-          bar={i === 0 ? 'primary' : 'light'}
-          license={i === 0 ? 'Apache 2.0' : 'Apache 2.0'}
+          license="Apache 2.0"
           locale={locale}
         />
       ))}
     </div>
   </section>
 
-  <section class="section section--tight project-section" data-section="tooling">
+  <section class="section project-section" data-section="tooling">
     <span class="section-eyebrow">{s.projects.sectionTooling}</span>
     <div class="card-grid card-grid--3">
       {tooling.map((project, i) => {
-        const bars = ['primary', 'bright', 'mid', 'light', 'pale'] as const;
         const licenses = ['MIT', undefined, 'MIT', 'MIT', 'MIT'];
         return (
           <ProjectCard
             project={project}
             signal={github.repos[project.slug]}
-            variant="grid"
-            bar={bars[i] ?? 'primary'}
             license={licenses[i]}
             locale={locale}
           />
@@ -95,8 +90,8 @@ const tooling = projects.filter((p) =>
     </div>
   </section>
 
-  <section class="section section--tight project-section" data-section="contributions">
-    <span class="section-eyebrow section-eyebrow--mid">{s.projects.sectionContributions}</span>
+  <section class="section project-section" data-section="contributions">
+    <span class="section-eyebrow">{s.projects.sectionContributions}</span>
     <div class="card-grid card-grid--2">
       {contributionHighlights.map((item) => (
         <article class="contrib-card" data-categories={item.categories.join(' ')}>

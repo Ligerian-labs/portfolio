@@ -11,6 +11,7 @@ type ProjectSource = {
   language: string;
   href: string;
   repository: string;
+  tagline: Translated;
   summary: Translated;
   problem: Translated;
   build: Translated;
@@ -26,6 +27,7 @@ export type ProjectDefinition = {
   language: string;
   href: string;
   repository: string;
+  tagline: string;
   summary: string;
   problem: string;
   build: string;
@@ -42,9 +44,10 @@ const projectDefinitions_all: readonly ProjectSource[] = [
     language: 'Zig',
     href: 'https://github.com/MartianGreed/marathon',
     repository: 'MartianGreed/marathon',
+    tagline: { en: 'Zig · AI · tooling', fr: 'Zig · IA · tooling' },
     summary: {
-      en: 'A distributed Claude Code runner that executes tasks inside isolated Firecracker VMs.',
-      fr: "Un runner Claude Code distribué qui exécute les tâches dans des VMs Firecracker isolées.",
+      en: 'Distributed Zig runner executing Claude Code tasks inside isolated Firecracker VMs.',
+      fr: 'Runner Zig distribué exécutant des tâches Claude Code dans des VMs Firecracker isolées.',
     },
     problem: {
       en: 'Agentic development only becomes credible at scale when execution is isolated, schedulable, and measurable.',
@@ -68,9 +71,10 @@ const projectDefinitions_all: readonly ProjectSource[] = [
     language: 'TypeScript',
     href: 'https://github.com/MartianGreed/claudeswarm',
     repository: 'MartianGreed/claudeswarm',
+    tagline: { en: 'TypeScript · AI', fr: 'TypeScript · IA' },
     summary: {
-      en: 'Automated ticket-to-PR orchestration with sandboxed execution and multi-provider issue sync.',
-      fr: "Orchestration automatisée ticket-vers-PR avec exécution isolée et synchronisation d'issues multi-providers.",
+      en: 'Ticket-to-PR agent orchestration with sandboxed execution and human checkpoints.',
+      fr: 'Orchestration ticket-vers-PR par agents, avec exécution isolée et validations humaines.',
     },
     problem: {
       en: 'AI-assisted engineering workflows need more than prompts; they need queues, state machines, review boundaries, and observability.',
@@ -94,6 +98,7 @@ const projectDefinitions_all: readonly ProjectSource[] = [
     language: 'Rust',
     href: 'https://github.com/MartianGreed/sqlv',
     repository: 'MartianGreed/sqlv',
+    tagline: { en: 'Rust · tooling', fr: 'Rust · tooling' },
     summary: {
       en: 'A keyboard-first SQLite explorer for the terminal, built with Ratatui.',
       fr: "Un explorateur SQLite clavier-first pour le terminal, construit avec Ratatui.",
@@ -111,7 +116,7 @@ const projectDefinitions_all: readonly ProjectSource[] = [
       fr: "Met en avant un artisanat produit Rust et un œil affûté pour l'expérience développeur pratique.",
     },
     categories: ['tooling'],
-    featured: true,
+    featured: false,
   },
   {
     slug: 'autobahn-nvim',
@@ -120,6 +125,7 @@ const projectDefinitions_all: readonly ProjectSource[] = [
     language: 'Lua',
     href: 'https://github.com/MartianGreed/autobahn.nvim',
     repository: 'MartianGreed/autobahn.nvim',
+    tagline: { en: 'Lua · AI · tooling', fr: 'Lua · IA · tooling' },
     summary: {
       en: 'A multi-agent coding session manager for Neovim with isolated workspaces and multi-VCS support.',
       fr: "Un gestionnaire de sessions de code multi-agents pour Neovim avec espaces de travail isolés et support multi-VCS.",
@@ -146,6 +152,7 @@ const projectDefinitions_all: readonly ProjectSource[] = [
     language: 'Go',
     href: 'https://github.com/MartianGreed/ccmanager',
     repository: 'MartianGreed/ccmanager',
+    tagline: { en: 'Go · gaming · AI', fr: 'Go · gaming · IA' },
     summary: {
       en: 'A gamified macro manager for Claude Code sessions inspired by StarCraft 2 mechanics.',
       fr: "Un gestionnaire de macros gamifié pour les sessions Claude Code inspiré des mécaniques de StarCraft 2.",
@@ -167,14 +174,15 @@ const projectDefinitions_all: readonly ProjectSource[] = [
   },
   {
     slug: 'inshtaller',
-    name: 'inshtaller',
+    name: 'insh / inshtaller',
     year: '2025',
     language: 'Zig',
     href: 'https://github.com/MartianGreed/inshtaller',
     repository: 'MartianGreed/inshtaller',
+    tagline: { en: 'Zig · security', fr: 'Zig · sécurité' },
     summary: {
-      en: 'A tiny Zig CLI that keeps an encrypted set of personal env vars in sync across every machine via a private GitHub repo.',
-      fr: "Un petit CLI Zig qui synchronise un jeu chiffré de variables d'environnement personnelles entre toutes vos machines via un dépôt GitHub privé.",
+      en: 'Zig CLI syncing XChaCha20-Poly1305-encrypted environment variables across machines.',
+      fr: "CLI Zig qui synchronise des variables d'environnement chiffrées en XChaCha20-Poly1305 entre machines.",
     },
     problem: {
       en: 'Personal secrets and shell env vars drift between laptops, servers, and containers — existing managers are either heavyweight, cloud-bound, or impractical for a minimal dev setup.',
@@ -189,7 +197,34 @@ const projectDefinitions_all: readonly ProjectSource[] = [
       fr: "Démontre un artisanat systèmes bas niveau — cryptographie, sandboxing de processus et une attention forte à l'ergonomie développeur.",
     },
     categories: ['tooling'],
-    featured: false,
+    featured: true,
+  },
+  {
+    slug: 'atelier',
+    name: 'atelier',
+    year: '2026',
+    language: 'Rust',
+    href: 'https://github.com/MartianGreed/atelier',
+    repository: 'MartianGreed/atelier',
+    tagline: { en: 'Rust · AI · tooling', fr: 'Rust · IA · tooling' },
+    summary: {
+      en: 'A studio for coding agents — one terminal dashboard driving Claude Code, Codex, OpenCode & Pi behind a single UX.',
+      fr: 'Un studio pour agents de code — un dashboard terminal qui pilote Claude Code, Codex, OpenCode & Pi derrière une seule UX.',
+    },
+    problem: {
+      en: 'Running several coding agents means juggling incompatible CLIs, terminals, and mental models — the tooling fragments faster than the work.',
+      fr: "Faire tourner plusieurs agents de code oblige à jongler entre CLIs, terminaux et modèles mentaux incompatibles — l'outillage se fragmente plus vite que le travail.",
+    },
+    build: {
+      en: 'Built a Rust terminal dashboard that abstracts each agent behind a common session model with unified controls, status, and output.',
+      fr: "Dashboard terminal en Rust qui abstrait chaque agent derrière un modèle de session commun, avec contrôles, statut et sorties unifiés.",
+    },
+    impact: {
+      en: 'One UX for the whole agent fleet — a systems take on multi-agent development ergonomics.',
+      fr: "Une seule UX pour toute la flotte d'agents — une approche systèmes de l'ergonomie du développement multi-agents.",
+    },
+    categories: ['ai', 'tooling'],
+    featured: true,
   },
   {
     slug: 'rust-verify-keplr-signature',
@@ -198,6 +233,7 @@ const projectDefinitions_all: readonly ProjectSource[] = [
     language: 'Rust',
     href: 'https://github.com/MartianGreed/rust-verify-keplr-signature',
     repository: 'MartianGreed/rust-verify-keplr-signature',
+    tagline: { en: 'Rust · blockchain', fr: 'Rust · blockchain' },
     summary: {
       en: 'A small Rust library to verify Keplr wallet signatures for Cosmos-based authentication flows.',
       fr: "Une petite bibliothèque Rust pour vérifier les signatures du wallet Keplr dans des flux d'authentification Cosmos.",
@@ -227,6 +263,7 @@ export function getProjects(locale: Locale): readonly ProjectDefinition[] {
     language: p.language,
     href: p.href,
     repository: p.repository,
+    tagline: p.tagline[locale],
     summary: p.summary[locale],
     problem: p.problem[locale],
     build: p.build[locale],
