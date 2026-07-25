@@ -57,6 +57,7 @@ export function buildPersonSchema() {
       'Rust',
       'Zig',
       'Go',
+      'Python',
       'TypeScript',
       'Cairo',
     ],

@@ -19,6 +19,7 @@ export const site = {
     'Rust engineer',
     'Zig engineer',
     'Go engineer',
+    'Python engineer',
     'TypeScript engineer',
     'Cairo engineer',
     'Open source engineer',

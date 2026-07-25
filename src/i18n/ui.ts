@@ -49,7 +49,7 @@ export const ui = {
       ctaMeta: 'Architecture on AWS · Cloud University 2020 — FR native · EN full professional',
       breadcrumb: { home: 'Home' },
       seoDescription:
-        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. I turn ambiguous problems into production systems. Rust, Zig, Go, TypeScript, Cairo.',
+        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. I turn ambiguous problems into production systems. Rust, Zig, Go, Python, TypeScript, Cairo.',
     },
     projects: {
       breadcrumbHome: '~/',
@@ -114,7 +114,7 @@ export const ui = {
     site: {
       title: 'Valentin Dosimont · Fractional CTO',
       description:
-        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. I turn ambiguous problems into production systems. Rust, Zig, Go, TypeScript, Cairo.',
+        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. I turn ambiguous problems into production systems. Rust, Zig, Go, Python, TypeScript, Cairo.',
     },
   },
   fr: {
@@ -163,7 +163,7 @@ export const ui = {
       ctaMeta: 'Architecture on AWS · Cloud University 2020 — FR natif · EN professionnel complet',
       breadcrumb: { home: 'Accueil' },
       seoDescription:
-        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. Je transforme des problèmes ambigus en systèmes en production. Rust, Zig, Go, TypeScript, Cairo.',
+        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. Je transforme des problèmes ambigus en systèmes en production. Rust, Zig, Go, Python, TypeScript, Cairo.',
     },
     projects: {
       breadcrumbHome: '~/',
@@ -228,7 +228,7 @@ export const ui = {
     site: {
       title: 'Valentin Dosimont · CTO à temps partagé',
       description:
-        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. Je transforme des problèmes ambigus en systèmes en production. Rust, Zig, Go, TypeScript, Cairo.',
+        'Valentin Dosimont — Fractional CTO & Forward Deployed Engineer. Je transforme des problèmes ambigus en systèmes en production. Rust, Zig, Go, Python, TypeScript, Cairo.',
     },
   },
 } as const;

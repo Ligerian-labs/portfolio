@@ -106,3 +106,8 @@
 /Users/valentindosimont/workspace/portfolio/src/components/Header.astro
 /Users/valentindosimont/workspace/portfolio/src/styles/global.css
 /Users/valentindosimont/workspace/portfolio/README.md
+/Users/valentindosimont/workspace/portfolio/src/data/experience.ts
+/Users/valentindosimont/workspace/portfolio/src/config/site.ts
+/Users/valentindosimont/workspace/portfolio/src/lib/seo.ts
+/Users/valentindosimont/workspace/portfolio/src/components/SeoHead.astro
+/Users/valentindosimont/workspace/portfolio/src/i18n/ui.ts

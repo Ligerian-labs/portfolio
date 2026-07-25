@@ -110,7 +110,7 @@ const same = (s: string): Translated => ({ en: s, fr: s });
 const stackGroups_all: readonly StackGroupSource[] = [
   {
     label: { en: 'Systems', fr: 'Systèmes' },
-    items: ['Rust', 'Zig', 'Go', 'TypeScript', 'JavaScript', 'Node.js', 'Cairo'].map(same),
+    items: ['Rust', 'Zig', 'Go', 'Python', 'TypeScript', 'JavaScript', 'Node.js', 'Cairo'].map(same),
   },
   {
     label: { en: 'Architecture', fr: 'Architecture' },
